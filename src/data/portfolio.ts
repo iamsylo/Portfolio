@@ -73,8 +73,7 @@ export const projects: Project[] = [
     longDescription: "OTICURE tackles medication non-adherence using AI and machine learning algorithms. The app provides personalized medication recommendations, intelligent reminders, and real-time drug identification to improve patient outcomes and reduce healthcare costs.",
     image: "/oticure.png",
     technologies: ["Flutter", "Dart", "Firebase", "Machine Learning", "TF-IDF Algorithm", "Python", "Scikit-learn"],
-    githubUrl: "https://github.com/yourusername/oticure",
-    liveUrl: "https://your-oticure-demo.com",
+    githubUrl: "https://github.com/iamsylo/oticure",
     category: "mobile",
     featured: true
   },
@@ -85,7 +84,7 @@ export const projects: Project[] = [
     longDescription: "A comprehensive personal portfolio website showcasing professional experience, projects, and creative work. Features include responsive design, dark/light theme toggle, smooth animations, interactive project galleries, and contact forms. Built with modern web technologies for optimal performance and user experience.",
     image: "/portfolio.png",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-    githubUrl: "https://github.com/yourusername/portfolio",
+    githubUrl: "https://github.com/iamsylo/portfolio",
     liveUrl: "https://your-portfolio.com",
     category: "web",
     featured: true
@@ -97,8 +96,7 @@ export const projects: Project[] = [
     longDescription: "A responsive web application prototype that streamlines office tasks including event scheduling, memo management, multimedia posting, and status tracking. Includes comprehensive user documentation for navigation and report generation.",
     image: "/dts.png",
     technologies: ["Firebase", "CSS", "HTML", "TypeScript"],
-    githubUrl: "https://github.com/yourusername/unp-alpha",
-    liveUrl: "https://your-unp-alpha.com",
+    githubUrl: "https://github.com/iamsylo/Document-Tracking-System",
     category: "web",
     featured: true
   },
@@ -118,29 +116,28 @@ export const projects: Project[] = [
 export const certificates: Certificate[] = [
   {
     id: "cert-1",
-    title: "React Developer Certification",
-    issuer: "Meta",
-    issueDate: "2023-12",
-    credentialId: "ABC123456",
-    credentialUrl: "https://coursera.org/verify/ABC123456",
-    skills: ["React", "JavaScript", "Frontend Development"]
+    title: "Fortinet Certified Associate in Cybersecurity",
+    issuer: "Fortinet Training Institute",
+    issueDate: "2024-11",
+    credentialId: "3117694473CP",
+    credentialUrl: "https://training.fortinet.com/pluginfile.php/1/tool_certificate/issues/1769999680/3117694473CP.pdf",
+    skills: ["Cybersecurity", "Network Security", "Threat Management"]
   },
   {
     id: "cert-2",
-    title: "AWS Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    issueDate: "2023-10",
-    credentialId: "XYZ789012",
-    credentialUrl: "https://aws.amazon.com/verification/XYZ789012",
-    skills: ["AWS", "Cloud Computing", "DevOps"]
+    title: "Fortinet Certified Fundamentals in Cybersecurity",
+    issuer: "Fortinet Training Institute",
+    issueDate: "2024-11",
+    credentialId: "4924605867CP",
+    credentialUrl: "https://training.fortinet.com/pluginfile.php/1/tool_certificate/issues/1769999564/4924605867CP.pdf",
+    skills: ["Cybersecurity", "Network Security", "DevOps"]
   },
   {
     id: "cert-3",
-    title: "Adobe Certified Expert - Photoshop",
-    issuer: "Adobe",
-    issueDate: "2023-08",
-    credentialId: "DEF345678",
-    skills: ["Photoshop", "Photo Editing", "Graphic Design"]
+    title: "Test Of Practical Competency in IT (TOPCIT) - Level 2",
+    issuer: "Institute for Information & Communications Technology Planning & Evaluation (IITP), South Korea",
+    issueDate: "2025-01",
+    skills: ["Software Development", "Database Management", "IT Problem Solving"]
   }
 ];
 
@@ -173,108 +170,39 @@ export const skills: Skill[] = [
 
 export const mediaItems: MediaItem[] = [
   {
-    id: "media-1",
-    title: "Seablume",
+    id: "gd-1",
+    title: "Shutter Brew",
     type: "photo",
-    image: "/images/portraits/SEABLUME-1.jpg",
-    category: "Image",
-    description: "A stunning collection of event photography capturing the beauty and essence of the Seablume event. Each image showcases different moments and perspectives from this memorable occasion.",
-    featured: true,
-    albumId: "seablume"
-  },
-  {
-    id: "media-1b",
-    title: "Seablume",
-    type: "photo",
-    image: "/portraits/SEABLUME-4.jpg",
-    category: "Image",
-    description: "A stunning collection of event photography capturing the beauty and essence of the Seablume event. Each image showcases different moments and perspectives from this memorable occasion.",
-    featured: false,
-    albumId: "seablume"
-  },
-  {
-    id: "media-1c",
-    title: "Seablume",
-    type: "photo",
-    image: "/images/portraits/SEABLUME-3.jpg",
-    category: "Image",
-    description: "A stunning collection of event photography capturing the beauty and essence of the Seablume event. Each image showcases different moments and perspectives from this memorable occasion.",
-    featured: false,
-    albumId: "seablume"
-  },
-  {
-    id: "media-2",
-    title: "Portrait Session",
-    type: "photo",
-    image: "/images/portraits/NBS-4.jpg",
-    category: "Image",
-    description: "Professional portrait photography session",
-    featured: true
-  },
-  {
-    id: "media-3",
-    title: "Wedding Highlights",
-    type: "video",
-    image: "/placeholder-video-1.mp4",
-    thumbnail: "/placeholder-video-thumb-1.jpg",
-    category: "Video",
-    description: "Wedding highlight reel showcasing the special day",
-    featured: true
-  },
-  {
-    id: "media-4",
-    title: "Corporate Video",
-    type: "video",
-    image: "/placeholder-video-2.mp4",
-    thumbnail: "/placeholder-video-thumb-2.jpg",
-    category: "Video",
-    description: "Corporate promotional video with motion graphics",
-    featured: false
-  },
-  {
-    id: "media-5",
-    title: "Nature Portrait",
-    type: "photo",
-    image: "/placeholder-photo-3.jpg",
-    category: "Image",
-    description: "Outdoor portrait session in natural lighting",
-    featured: false
-  },
-  {
-    id: "media-6",
-    title: "Mountain Vista",
-    type: "photo",
-    image: "/placeholder-photo-4.jpg",
-    category: "Image",
-    description: "Breathtaking mountain landscape during sunrise",
-    featured: false
-  },
-  {
-    id: "media-7",
-    title: "Event Coverage",
-    type: "video",
-    image: "/placeholder-video-3.mp4",
-    thumbnail: "/placeholder-video-thumb-3.jpg",
-    category: "Video",
-    description: "Professional event documentation and highlights",
-    featured: false
-  },
-  {
-    id: "media-8",
-    title: "Brand Identity Design",
-    type: "photo",
-    image: "/graphics/brand-design-1.jpg",
+    image: "/graphics/brand.png",
     category: "Graphic Design",
-    description: "Complete brand identity package including logo, business cards, and brand guidelines",
+    description: "a photo-café brand identity that blends photography with coffee culture, centered on a logo merging a camera and a coffee cup (stylized aperture) and the tagline “Capture the Moment. Sip the Mood.”",
     featured: true
   },
   {
-    id: "media-9",
-    title: "Event Poster Design",
+    id: "gd-2",
+    title: "Book Cover",
     type: "photo",
-    image: "/graphics/poster-design-1.jpg",
+    image: "/graphics/book.png",
     category: "Graphic Design",
-    description: "Creative poster designs for various events and promotions",
+    description: "Design that fuses music and visual arts with bold colors, dynamic silhouettes, and symbolic elements. The playful yet structured layout captures creativity, rhythm, and expression.",
+    featured: false
+  },
+  {
+    id: "gd-3",
+    title: "Tarpaulin Design",
+    type: "photo",
+    image: "/graphics/tarp.png",
+    category: "Graphic Design",
+    description: "The layout combines formal academic elements with a vibrant, professional aesthetic to highlight the graduates’ achievements while maintaining clarity and visual balance.",
+    featured: false
+  },
+    {
+    id: "gd-4",
+    title: "Poster Design",
+    type: "photo",
+    image: "/graphics/poster.png",
+    category: "Graphic Design",
+    description: "The design emphasizes user-friendliness and accessibility to ensure effective medication management.",
     featured: false
   }
 ];
@@ -286,7 +214,7 @@ export const contactInfo: ContactInfo = {
   socialLinks: [
     {
       platform: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/iamsylo",
       icon: "github"
     },
     {

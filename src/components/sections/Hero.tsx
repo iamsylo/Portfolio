@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Github, Linkedin, Mail, Camera } from 'lucide-react';
+import { ChevronDown, Download, Github, Linkedin, Mail, Camera, LucideInstagram, Facebook } from 'lucide-react';
 import { personalInfo } from '../../data/portfolio';
 
 export default function Hero() {
@@ -121,7 +121,7 @@ export default function Hero() {
               className="flex space-x-6 justify-center lg:justify-start"
             >
               <motion.a
-                href="https://github.com/yourusername"
+                href="https://github.com/iamsylo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary-600 transition-colors"
@@ -130,7 +130,7 @@ export default function Hero() {
                 <Github className="h-6 w-6" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/https://linkedin.com/in/christian-joseph-pagatpatan-971308381"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary-600 transition-colors"
@@ -138,14 +138,23 @@ export default function Hero() {
               >
                 <Linkedin className="h-6 w-6" />
               </motion.a>
-              <motion.a
-                href="https://instagram.com/yourusername"
+                            <motion.a
+                href="https://www.facebook.com/iamsidyey"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary-600 transition-colors"
                 whileHover={{ scale: 1.1, y: -2 }}
               >
-                <Camera className="h-6 w-6" />
+                <Facebook className="h-6 w-6" />
+              </motion.a>
+              <motion.a
+                href="https://instagram.com/sylo.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-primary-600 transition-colors"
+                whileHover={{ scale: 1.1, y: -2 }}
+              >
+                <LucideInstagram className="h-6 w-6" />
               </motion.a>
             </motion.div>
           </motion.div>

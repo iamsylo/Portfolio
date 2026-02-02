@@ -1,55 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Video, X, Play, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Camera, Video, X, Play, Filter } from 'lucide-react';
 import { mediaItems } from '../../data/portfolio';
 
 const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onClose: () => void }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [albumItems, setAlbumItems] = useState<any[]>([]);
-  
-  // Initialize album items and current index when modal opens
-  useEffect(() => {
-    if (isOpen && item) {
-      const items = item.albumId 
-        ? mediaItems.filter(media => media.albumId === item.albumId)
-        : [item];
-      
-      setAlbumItems(items);
-      const initialIndex = items.findIndex(media => media.id === item.id);
-      setCurrentIndex(initialIndex >= 0 ? initialIndex : 0);
-    }
-  }, [isOpen, item?.id, item?.albumId]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (!isOpen || albumItems.length === 0) return;
-    
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        goToPrev();
-      } else if (e.key === 'ArrowRight') {
-        goToNext();
-      } else if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isOpen, albumItems.length]);
-  
-  if (!isOpen || !item || albumItems.length === 0) return null;
-  
-  const currentItem = albumItems[currentIndex] || item;
-  const hasMultipleItems = albumItems.length > 1;
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % albumItems.length);
-  };
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + albumItems.length) % albumItems.length);
-  };
+  if (!isOpen || !item) return null;
+  const currentItem = item;
 
   return (
     <AnimatePresence>
@@ -74,49 +30,7 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
             <X className="h-5 w-5" />
           </button>
 
-          {/* Navigation arrows */}
-          {hasMultipleItems && (
-            <>
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrev();
-                }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </motion.button>
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNext();
-                }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="h-6 w-6" />
-              </motion.button>
-              
-              {/* Dots indicator */}
-              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                {albumItems.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(index);
-                    }}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentIndex ? 'bg-white' : 'bg-white/40 hover:bg-white/70'
-                    }`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
+
 
           {/* Image container with aspect ratio */}
           <div className="flex-1 flex items-center justify-center bg-black/5 dark:bg-black/20 p-4">
@@ -126,7 +40,9 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
                   key={currentItem.id}
                   src={currentItem.image}
                   alt={currentItem.title}
-                  className="max-w-full max-h-full object-contain rounded"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-full max-h-full object-contain rounded transform-gpu will-change-transform"
                 />
               </div>
             ) : (
@@ -135,6 +51,7 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
                   key={currentItem.id}
                   src={currentItem.image}
                   controls
+                  preload="metadata"
                   className="max-w-full max-h-full object-contain rounded"
                 />
               </div>
@@ -145,11 +62,7 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
           <div className="flex-shrink-0 p-6 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">{currentItem.title}</h3>
-              {hasMultipleItems && (
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {currentIndex + 1} / {albumItems.length}
-                </span>
-              )}
+
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{currentItem.description}</p>
           </div>
@@ -165,7 +78,7 @@ const MediaCard = ({ item, index, onClick }: { item: any, index: number, onClick
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.45 }}
       className="group cursor-pointer"
       onClick={onClick}
     >
@@ -176,7 +89,9 @@ const MediaCard = ({ item, index, onClick }: { item: any, index: number, onClick
         <img
           src={item.type === 'photo' ? item.image : item.thumbnail}
           alt={item.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-200"
         />
         
         {/* Overlay */}
@@ -184,7 +99,7 @@ const MediaCard = ({ item, index, onClick }: { item: any, index: number, onClick
           <motion.div
             initial={{ scale: 0 }}
             whileHover={{ scale: 1 }}
-            className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            className="bg-white/90 dark:bg-gray-800/90 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
           >
             {item.type === 'photo' ? (
               <Camera className="h-6 w-6 text-primary-600 dark:text-primary-400" />
@@ -194,25 +109,8 @@ const MediaCard = ({ item, index, onClick }: { item: any, index: number, onClick
           </motion.div>
         </div>
 
-        {/* Type indicator */}
-        <div className="absolute top-3 left-3">
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-1 rounded">
-            {item.type === 'photo' ? (
-              <Camera className="h-4 w-4 text-primary-600 dark:text-primary-400" />
-            ) : (
-              <Video className="h-4 w-4 text-primary-600 dark:text-primary-400" />
-            )}
-          </div>
-        </div>
 
-        {/* Featured badge */}
-        {item.featured && (
-          <div className="absolute top-3 right-3">
-            <span className="bg-primary-600 text-white text-xs px-2 py-1 rounded">
-              Featured
-            </span>
-          </div>
-        )}
+
       </motion.div>
 
       <div className="mt-4">
@@ -228,23 +126,23 @@ export default function Gallery() {
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // Only show featured items in the main grid
-  const featuredItems = mediaItems.filter(item => item.featured);
-  const [filteredItems, setFilteredItems] = useState(featuredItems);
+  // Show only Graphic Design items in the main grid
+  const graphicItems = mediaItems.filter(item => item.category === 'Graphic Design');
+  const [filteredItems, setFilteredItems] = useState(graphicItems);
 
-  // Generate categories dynamically from featured items only
+  // Categories: only Graphic Design (or subcategories if present)
   const categories = [
-    { value: 'all', label: 'All Media' },
-    ...Array.from(new Set(featuredItems.map(item => item.category)))
+    { value: 'all', label: 'All Graphic Works' },
+    ...Array.from(new Set(graphicItems.map(item => item.category)))
       .map(category => ({ value: category, label: category }))
   ];
 
   const filterItems = (category: string) => {
     setSelectedCategory(category);
     if (category === 'all') {
-      setFilteredItems(featuredItems);
+      setFilteredItems(graphicItems);
     } else {
-      setFilteredItems(featuredItems.filter(item => item.category === category));
+      setFilteredItems(graphicItems.filter(item => item.category === category));
     }
   };
 
@@ -268,9 +166,9 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Creative Gallery</h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Graphic Design Gallery</h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-              Explore my creative work organized by category - from portraits and landscapes to weddings and corporate projects
+              Explore my graphic design work — logos, posters, branding, and other visual identities.
             </p>
             <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
           </motion.div>
@@ -340,7 +238,7 @@ export default function Gallery() {
             className="text-center mt-16"
           >
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Need professional photography or videography services?
+              Looking for graphic design or branding work?
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -348,8 +246,8 @@ export default function Gallery() {
               className="btn-primary inline-flex items-center"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <Camera className="h-5 w-5 mr-2" />
-              Hire Me for a Project
+              <Filter className="h-5 w-5 mr-2" />
+              Hire Me for Design Work
             </motion.button>
           </motion.div>
         </div>

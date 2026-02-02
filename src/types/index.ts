@@ -51,8 +51,7 @@ export interface MediaItem {
   category: string;
   description?: string;
   featured: boolean;
-  albumId?: string;
-}
+} 
 
 export interface SocialLink {
   platform: string;
