@@ -59,20 +59,28 @@ export default function Contact() {
     setIsSubmitting(true);
     setFormStatus({ type: null, message: '' });
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Build mailto link with encoded subject and body
+      const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio');
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+      );
+      const mailto = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
+
+      // Open default mail client
+      window.location.href = mailto;
+
       setFormStatus({
         type: 'success',
-        message: 'Thank you for your message! I\'ll get back to you soon.'
+        message: `Your email client should open so you can send the message. If it doesn't, please email me at ${contactInfo.email}.`
       });
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    }, 2000);
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setFormStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
