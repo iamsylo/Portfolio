@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Video, X, Play, Filter } from 'lucide-react';
+import { Camera, X, Play, Filter } from 'lucide-react';
 import { mediaItems } from '../../data/portfolio';
 
 const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onClose: () => void }) => {
@@ -72,7 +72,7 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
   );
 };
 
-const MediaCard = ({ item, index, onClick }: { item: any, index: number, onClick: () => void }) => {
+const MediaCard = ({ item, onClick }: { item: any, onClick: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -207,11 +207,10 @@ export default function Gallery() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
             >
-              {filteredItems.map((item, index) => (
+              {filteredItems.map((item) => (
                 <MediaCard
                   key={item.id}
                   item={item}
-                  index={index}
                   onClick={() => openModal(item)}
                 />
               ))}

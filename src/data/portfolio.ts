@@ -107,7 +107,7 @@ export const projects: Project[] = [
     longDescription: "Educational Android game about West Philippine Sea territorial issues featuring interactive quizzes and fact-based modules. Built with Flutter for optimal mobile performance.",
     image: "/pilipinas.png",
     technologies: ["Flutter", "Dart", "Firebase", "Android Development", "UI/UX Design"],
-    githubUrl: "https://github.com/yourusername/pilipinas",
+    githubUrl: "https://github.com/iamsylo/pilipinas",
     category: "mobile",
     featured: true
   }
