@@ -73,7 +73,7 @@ export const projects: Project[] = [
     longDescription: "OTICURE tackles medication non-adherence using AI and machine learning algorithms. The app provides personalized medication recommendations, intelligent reminders, and real-time drug identification to improve patient outcomes and reduce healthcare costs.",
     image: "/oticure.png",
     technologies: ["Flutter", "Dart", "Firebase", "Machine Learning", "TF-IDF Algorithm", "Python", "Scikit-learn"],
-    githubUrl: "https://github.com/iamsylo/oticure",
+    githubUrl: "https://github.com/iamsylo/medknows",
     category: "mobile",
     featured: true
   },
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     image: "/portfolio.png",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
     githubUrl: "https://github.com/iamsylo/portfolio",
-    liveUrl: "https://your-portfolio.com",
+    liveUrl: "https://syloportfolio.netlify.app/",
     category: "web",
     featured: true
   },
