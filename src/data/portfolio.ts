@@ -181,8 +181,11 @@ export const skills: Skill[] = [
   
   // Soft Skills
   { name: "Problem Solving", category: "soft" },
+  { name: "Attention to Detail", category: "soft" },
   { name: "Team Collaboration", category: "soft" },
+  { name: "Critical Thinking", category: "soft" },
   { name: "Communication", category: "soft" },
+  { name: "Adaptability", category: "soft" },
   { name: "Project Management", category: "soft" }
 ];
 
