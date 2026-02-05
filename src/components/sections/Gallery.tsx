@@ -3,9 +3,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, X, Play, Filter } from 'lucide-react';
 import { mediaItems } from '../../data/portfolio';
 
+// Skeleton loader component
+const ImageSkeleton = () => (
+  <div className="w-full h-full bg-gradient-to-r from-gray-200 dark:from-gray-700 via-gray-100 dark:via-gray-600 to-gray-200 dark:to-gray-700 animate-pulse rounded-lg" />
+);
+
 const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onClose: () => void }) => {
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+
   if (!isOpen || !item) return null;
   const currentItem = item;
+
+  const handleImageLoad = () => setIsImageLoading(false);
+  const handleImageError = () => {
+    setIsImageLoading(false);
+    setImageError(true);
+  };
 
   return (
     <AnimatePresence>
@@ -35,15 +49,28 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
           {/* Image container with aspect ratio */}
           <div className="flex-1 flex items-center justify-center bg-black/5 dark:bg-black/20 p-4">
             {currentItem.type === 'photo' ? (
-              <div className="w-full max-w-2xl aspect-[4/3] flex items-center justify-center">
-                <img
-                  key={currentItem.id}
-                  src={currentItem.image}
-                  alt={currentItem.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="max-w-full max-h-full object-contain rounded transform-gpu will-change-transform"
-                />
+              <div className="w-full max-w-2xl aspect-[4/3] flex items-center justify-center relative">
+                {isImageLoading && <ImageSkeleton />}
+                {!imageError && (
+                  <img
+                    key={currentItem.id}
+                    src={currentItem.image}
+                    alt={currentItem.title}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
+                    className={`max-w-full max-h-full object-contain rounded transform-gpu will-change-transform transition-opacity ${
+                      isImageLoading ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  />
+                )}
+                {imageError && (
+                  <div className="text-center">
+                    <Camera className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                    <p className="text-gray-600 dark:text-gray-400">Unable to load image</p>
+                  </div>
+                )}
               </div>
             ) : (
               <div className="w-full max-w-2xl aspect-[16/9] flex items-center justify-center">
@@ -73,6 +100,15 @@ const MediaModal = ({ item, isOpen, onClose }: { item: any, isOpen: boolean, onC
 };
 
 const MediaCard = ({ item, onClick }: { item: any, onClick: () => void }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageLoad = () => setIsLoading(false);
+  const handleImageError = () => {
+    setIsLoading(false);
+    setImageError(true);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -86,13 +122,30 @@ const MediaCard = ({ item, onClick }: { item: any, onClick: () => void }) => {
         whileHover={{ scale: 1.03, y: -5 }}
         className="relative aspect-square overflow-hidden rounded-lg shadow-lg"
       >
-        <img
-          src={item.type === 'photo' ? item.image : item.thumbnail}
-          alt={item.title}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-200"
-        />
+        {/* Skeleton loader */}
+        {isLoading && <ImageSkeleton />}
+
+        {/* Main image */}
+        {!imageError && (
+          <img
+            src={item.type === 'photo' ? item.image : item.thumbnail}
+            alt={item.title}
+            loading="lazy"
+            decoding="async"
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            className={`w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-105 transition-all duration-200 ${
+              isLoading ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+        )}
+
+        {/* Error fallback */}
+        {imageError && (
+          <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <Camera className="h-8 w-8 text-gray-400" />
+          </div>
+        )}
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
@@ -119,7 +172,7 @@ const MediaCard = ({ item, onClick }: { item: any, onClick: () => void }) => {
       </div>
     </motion.div>
   );
-};
+};;
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
