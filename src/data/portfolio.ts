@@ -226,11 +226,6 @@ export const contactInfo: ContactInfo = {
       platform: "Instagram",
       url: "https://www.instagram.com/sylo.jpg/",
       icon: "instagram"
-    },
-    {
-      platform: "X",
-      url: "https://x.com/iam_sidyey",
-      icon: "twitter"
     }
   ]
 };
