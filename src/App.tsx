@@ -1,4 +1,5 @@
 
+import { LazyMotion, domAnimation } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
@@ -11,19 +12,21 @@ import Footer from './components/sections/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <Navigation />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Certificates />
-        <Projects />
-        <Gallery />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LazyMotion features={domAnimation} strict>
+      <div className="App">
+        <Navigation />
+        <main>
+          <Hero />
+          <About />
+          <Experience />
+          <Certificates />
+          <Projects />
+          <Gallery />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LazyMotion>
   );
 }
 

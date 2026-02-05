@@ -15,9 +15,10 @@ const SkillBar = ({ skill }: { skill: any }) => {
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className="flex items-center space-x-4 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-gray-600 transition-shadow"
     >
       <div className="flex-shrink-0">
@@ -28,13 +29,14 @@ const SkillBar = ({ skill }: { skill: any }) => {
           <span className="text-sm font-medium text-gray-900 dark:text-white">{skill.name}</span>
           <span className="text-xs text-gray-500 dark:text-gray-400">{skill.level}/5</span>
         </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
           <motion.div
             className="bg-primary-600 dark:bg-primary-500 h-2 rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: `${(skill.level / 5) * 100}%` }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            style={{ willChange: 'width' }}
           />
         </div>
       </div>
@@ -54,26 +56,35 @@ export default function About() {
     <section id="about" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-primary-600 dark:bg-primary-400 mx-auto"></div>
+          <motion.div 
+            className="w-20 h-1 bg-primary-600 dark:bg-primary-400 mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
             className="flex justify-center"
           >
             <div className="relative">
               <motion.div
-                whileHover={{ rotate: 5, scale: 1.05 }}
+                whileHover={{ rotate: 2, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl"
               >
                 <img
@@ -84,10 +95,11 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent"></div>
               </motion.div>
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ scale: 0, rotate: -90 }}
+                whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.5, type: "spring" }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                whileHover={{ rotate: 12, scale: 1.1 }}
                 className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg dark:shadow-gray-700"
               >
                 <Camera className="h-8 w-8 text-primary-600 dark:text-primary-400" />
@@ -97,9 +109,10 @@ export default function About() {
 
           {/* Bio */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
             className="space-y-6"
           >
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -117,18 +130,20 @@ export default function About() {
 
         {/* Skills */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
         >
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Skills & Expertise</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {Object.entries(skillCategories).map(([category, categorySkills]) => (
+            {Object.entries(skillCategories).map(([category, categorySkills], index) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="space-y-4"
               >
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white capitalize mb-4 flex items-center">

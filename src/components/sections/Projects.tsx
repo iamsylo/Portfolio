@@ -17,17 +17,19 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
       className="relative h-96 perspective-1000"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
+      onTouchStart={() => setIsFlipped(!isFlipped)}
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        style={{ willChange: 'transform' }}
         className="relative w-full h-full transform-style-preserve-3d"
       >
         {/* Front of card */}
@@ -108,8 +110,9 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 btn-secondary text-center inline-flex items-center justify-center text-sm py-2"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Github className="h-4 w-4 mr-2" />
                   Code
@@ -121,8 +124,9 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 btn-primary text-center inline-flex items-center justify-center text-sm py-2"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
                   Live Demo
@@ -159,26 +163,34 @@ export default function Projects() {
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">My Projects</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             A collection of projects showcasing my technical skills and creative problem-solving abilities
           </p>
-          <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+          <motion.div 
+            className="w-20 h-1 bg-primary-600 mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         {/* Category Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.4 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category) => {
+          {categories.map((category, index) => {
             const Icon = category.icon;
             return (
               <motion.button
@@ -189,7 +201,11 @@ export default function Projects() {
                     ? 'bg-primary-600 text-white shadow-lg'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
-                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Icon className="h-4 w-4 mr-2" />
@@ -232,18 +248,19 @@ export default function Projects() {
 
         {/* Call to action */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
           className="text-center mt-16"
         >
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             Interested in working together on a project?
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="btn-primary"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >

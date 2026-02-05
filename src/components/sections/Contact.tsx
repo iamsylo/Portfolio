@@ -87,24 +87,32 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             Ready to bring your ideas to life? Let's collaborate on your next project or creative endeavor.
           </p>
-          <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+          <motion.div 
+            className="w-20 h-1 bg-primary-600 mx-auto"
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          ></motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
             className="space-y-8"
           >
             <div>
@@ -137,7 +145,8 @@ export default function Contact() {
 
               {contactInfo.phone && (
                 <motion.div
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: 3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex items-center space-x-4 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg"
                 >
                   <div className="bg-primary-600 p-3 rounded-full">
@@ -182,11 +191,12 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-gray-100 dark:bg-gray-800 hover:bg-primary-600 text-gray-600 dark:text-gray-400 hover:text-white p-3 rounded-full transition-colors"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      whileHover={{ scale: 1.1, y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.05, type: "spring", stiffness: 300 }}
                     >
                       <Icon className="h-6 w-6" />
                     </motion.a>
@@ -198,9 +208,10 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -209,7 +220,8 @@ export default function Contact() {
                     Full Name
                   </label>
                   <motion.input
-                    whileFocus={{ scale: 1.02 }}
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     type="text"
                     id="name"
                     name="name"
@@ -225,7 +237,8 @@ export default function Contact() {
                     Email Address
                   </label>
                   <motion.input
-                    whileFocus={{ scale: 1.02 }}
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     type="email"
                     id="email"
                     name="email"
@@ -243,7 +256,8 @@ export default function Contact() {
                   Subject
                 </label>
                 <motion.input
-                  whileFocus={{ scale: 1.02 }}
+                  whileFocus={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   type="text"
                   id="subject"
                   name="subject"
@@ -260,7 +274,8 @@ export default function Contact() {
                   Message
                 </label>
                 <motion.textarea
-                  whileFocus={{ scale: 1.02 }}
+                  whileFocus={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   id="message"
                   name="message"
                   value={formData.message}
@@ -296,8 +311,9 @@ export default function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full btn-primary inline-flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 {isSubmitting ? (
                   <>
