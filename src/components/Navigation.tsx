@@ -63,8 +63,8 @@ export default function Navigation() {
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
-            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md'
+            ? 'bg-white/95 dark:bg-[#0f1419]/95 backdrop-blur-md shadow-lg'
+            : 'bg-white/80 dark:bg-[#0f1419]/80 backdrop-blur-md'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,7 +144,7 @@ export default function Navigation() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="md:hidden bg-white dark:bg-gray-900 shadow-lg border-t dark:border-gray-700"
+              className="md:hidden bg-white dark:bg-[#0f1419] shadow-lg border-t dark:border-purple-900/30"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navItems.map((item) => {

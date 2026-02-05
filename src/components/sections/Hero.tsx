@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center gradient-bg dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center gradient-bg dark:bg-gradient-to-br dark:from-[#020617] dark:via-[#1E293B] dark:to-[#020617] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -26,7 +26,7 @@ export default function Hero() {
             ease: "easeInOut"
           }}
           style={{ willChange: 'transform' }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200/30 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-teal-400/25 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -39,7 +39,7 @@ export default function Hero() {
             ease: "easeInOut"
           }}
           style={{ willChange: 'transform' }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"
         />
       </div>
 
@@ -171,7 +171,7 @@ export default function Hero() {
                   ease: "easeInOut"
                 }}
                 style={{ willChange: 'transform, opacity' }}
-                className="absolute -inset-4 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full opacity-20 blur-lg"
+                className="absolute -inset-4 bg-[#2DD4BF] rounded-full breathing-glow"
               />
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                 <motion.img

@@ -11,6 +11,7 @@
   
   body {
     font-family: 'Inter', sans-serif;
+    @apply bg-white dark:bg-[#020617];
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -25,22 +26,22 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium;
+    @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium;
     will-change: transform;
   }
   
   .btn-secondary {
-    @apply bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-600 dark:border-blue-400 px-6 py-3 rounded-lg transition-all duration-200 font-medium;
+    @apply bg-transparent hover:bg-primary-50 dark:hover:bg-primary-900/20 text-primary-600 dark:text-primary-300 border border-primary-600 dark:border-primary-300 px-6 py-3 rounded-lg transition-all duration-200 font-medium;
     will-change: transform;
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 hover:shadow-xl dark:hover:shadow-gray-600 transition-shadow duration-300 p-6;
+    @apply bg-white dark:bg-gray-800/90 rounded-xl shadow-lg dark:shadow-gray-900/50 hover:shadow-xl dark:hover:shadow-gray-900/70 transition-shadow duration-300 p-6;
     will-change: box-shadow;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900;
+    @apply bg-gradient-to-br from-teal-50 via-white to-cyan-50 dark:from-[#020617] dark:via-[#1E293B] dark:to-[#020617];
   }
 }
 
@@ -87,4 +88,20 @@
 
 .will-change-opacity {
   will-change: opacity;
+}
+
+/* Breathing glow effect for teal elements */
+.breathing-glow {
+  animation: breathingGlow 4s ease-in-out infinite;
+}
+
+@keyframes breathingGlow {
+  0%, 100% {
+    opacity: 0.2;
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.35;
+    filter: blur(55px);
+  }
 }

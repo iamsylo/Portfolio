@@ -102,7 +102,7 @@ const ExperienceCard = ({ experience, index }: { experience: any, index: number 
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 gradient-bg dark:bg-gray-900">
+    <section id="experience" className="py-20 gradient-bg dark:bg-gradient-to-br dark:from-[#0f1419] dark:via-[#1a1f2e] dark:to-[#0f1419]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
