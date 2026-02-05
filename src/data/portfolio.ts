@@ -145,9 +145,7 @@ export const skills: Skill[] = [
   // Tech Stack - Frontend
   { name: "JavaScript", category: "tech", group: "frontend" },
   { name: "TypeScript", category: "tech", group: "frontend" },
-  { name: "HTML", category: "tech", group: "frontend" },
-  { name: "CSS", category: "tech", group: "frontend" },
-  { name: "Tailwind CSS", category: "tech", group: "frontend" },
+  { name: "Tailwind", category: "tech", group: "frontend" },
   { name: "React", category: "tech", group: "frontend" },
   { name: "Vite", category: "tech", group: "frontend" },
   { name: "Framer Motion", category: "tech", group: "frontend" },
