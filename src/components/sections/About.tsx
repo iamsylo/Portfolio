@@ -4,10 +4,25 @@ import { User, Code, Palette, Camera, Award } from 'lucide-react';
 import { personalInfo, skills } from '../../data/portfolio';
 
 const skillIcons = {
-  programming: Code,
+  tech: Code,
   design: Palette,
   tools: Award,
   soft: User
+};
+
+const SkillTag = ({ skill }: { skill: any }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      whileHover={{ scale: 1.05, y: -2 }}
+      className="inline-block px-3 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium border border-primary-200 dark:border-primary-800 hover:border-primary-400 dark:hover:border-primary-600 transition-all"
+    >
+      {skill.name}
+    </motion.div>
+  );
 };
 
 const SkillBar = ({ skill }: { skill: any }) => {
@@ -25,19 +40,8 @@ const SkillBar = ({ skill }: { skill: any }) => {
         <Icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
       </div>
       <div className="flex-1">
-        <div className="flex justify-between items-center mb-1">
+        <div className="flex items-center">
           <span className="text-sm font-medium text-gray-900 dark:text-white">{skill.name}</span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">{skill.level}/5</span>
-        </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-          <motion.div
-            className="bg-primary-600 dark:bg-primary-500 h-2 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${(skill.level / 5) * 100}%` }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            style={{ willChange: 'width' }}
-          />
         </div>
       </div>
     </motion.div>
@@ -45,8 +49,15 @@ const SkillBar = ({ skill }: { skill: any }) => {
 };
 
 export default function About() {
+  const techStackGroups = [
+    { key: 'frontend', label: 'Frontend' },
+    { key: 'backend', label: 'Backend' },
+    { key: 'ai', label: 'AI / Machine Learning' },
+    { key: 'devtools', label: 'Dev Tools' }
+  ] as const;
+
   const skillCategories = {
-    programming: skills.filter(s => s.category === 'programming'),
+    tech: skills.filter(s => s.category === 'tech'),
     design: skills.filter(s => s.category === 'design'),
     tools: skills.filter(s => s.category === 'tools'),
     soft: skills.filter(s => s.category === 'soft')
@@ -135,9 +146,59 @@ export default function About() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Skills & Expertise</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {Object.entries(skillCategories).map(([category, categorySkills], index) => (
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-12 text-center">Skills & Expertise</h3>
+          
+          {/* Tech Stack Section */}
+          <div className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4 }}
+              className="space-y-8"
+            >
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+                {React.createElement(skillIcons.tech, {
+                  className: "h-5 w-5 mr-2 text-primary-600 dark:text-primary-400"
+                })}
+                Tech Stack
+              </h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {techStackGroups.map((group) => {
+                  const groupSkills = skillCategories.tech.filter(skill => skill.group === group.key);
+
+                  if (groupSkills.length === 0) {
+                    return null;
+                  }
+
+                  return (
+                    <motion.div
+                      key={group.key}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4 }}
+                      className="space-y-3"
+                    >
+                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                        {group.label}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {groupSkills.map((skill) => (
+                          <SkillTag key={skill.name} skill={skill} />
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Other Skills */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {['design', 'tools', 'soft'].map((category, index) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
@@ -146,17 +207,16 @@ export default function About() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="space-y-4"
               >
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white capitalize mb-4 flex items-center">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
                   {React.createElement(skillIcons[category as keyof typeof skillIcons], {
                     className: "h-5 w-5 mr-2 text-primary-600 dark:text-primary-400"
                   })}
-                  {category === 'programming' ? 'Programming' : 
-                   category === 'design' ? 'Design' :
+                  {category === 'design' ? 'Design' :
                    category === 'tools' ? 'Tools' : 'Soft Skills'}
                 </h4>
-                <div className="space-y-3">
-                  {categorySkills.map((skill) => (
-                    <SkillBar key={skill.name} skill={skill} />
+                <div className="flex flex-wrap gap-2">
+                  {skillCategories[category as keyof typeof skillCategories].map((skill) => (
+                    <SkillTag key={skill.name} skill={skill} />
                   ))}
                 </div>
               </motion.div>

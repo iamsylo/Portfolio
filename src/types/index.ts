@@ -37,8 +37,9 @@ export interface Certificate {
 
 export interface Skill {
   name: string;
-  level: number; // 1-5
-  category: 'programming' | 'design' | 'tools' | 'soft';
+  level?: number; // 1-5 (optional)
+  category: 'tech' | 'design' | 'tools' | 'soft';
+  group?: 'frontend' | 'backend' | 'ai' | 'devtools';
   icon?: string;
 }
 

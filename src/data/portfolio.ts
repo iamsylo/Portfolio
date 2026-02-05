@@ -142,30 +142,50 @@ export const certificates: Certificate[] = [
 ];
 
 export const skills: Skill[] = [
-  // Programming
-  { name: "JavaScript", level: 5, category: "programming" },
-  { name: "TypeScript", level: 4, category: "programming" },
-  { name: "HTML & CSS", level: 5, category: "programming" },
-  { name: "Tailwind CSS", level: 4, category: "programming" },
-  { name: "React", level: 5, category: "programming" },
-  { name: "Dart/Flutter", level: 3, category: "programming" },
-  { name: "SQL", level: 3, category: "programming" },
+  // Tech Stack - Frontend
+  { name: "JavaScript", category: "tech", group: "frontend" },
+  { name: "TypeScript", category: "tech", group: "frontend" },
+  { name: "Tailwind CSS", category: "tech", group: "frontend" },
+  { name: "React", category: "tech", group: "frontend" },
+  { name: "Vite", category: "tech", group: "frontend" },
+  { name: "Framer Motion", category: "tech", group: "frontend" },
+  { name: "Dart/Flutter", category: "tech", group: "frontend" },
+
+  // Tech Stack - Backend
+  { name: "SQL", category: "tech", group: "backend" },
+  { name: "Firebase", category: "tech", group: "backend" },
+  { name: "PHP", category: "tech", group: "backend" },
+  { name: "REST API", category: "tech", group: "backend" },
+
+  // Tech Stack - AI / Machine Learning
+  { name: "Python", category: "tech", group: "ai" },
+  { name: "TensorFlow", category: "tech", group: "ai" },
+  { name: "PyTorch", category: "tech", group: "ai" },
+  { name: "Teachable Machine", category: "tech", group: "ai" },
   
   // Design
-  { name: "Adobe Photoshop", level: 5, category: "design" },
-  { name: "Adobe Lightroom", level: 4, category: "design" },
-  { name: "Adobe Premiere Pro", level: 4, category: "design" },
-  { name: "Canva", level: 4, category: "design" },
+  { name: "Adobe Photoshop", category: "design" },
+  { name: "Adobe Lightroom", category: "design" },
+  { name: "Adobe Premiere Pro", category: "design" },
+  { name: "Canva", category: "design" },
   
   // Tools
-  { name: "Git/GitHub", level: 2, category: "tools" },
-  { name: "Microsoft Office Suite", level: 4, category: "tools" },
+  { name: "Microsoft Office Suite", category: "tools" },
+  { name: "GitHub", category: "tools" },
+  { name: "VS Code", category: "tools" },
+  { name: "Discord", category: "tools" },
+  { name: "Trello", category: "tools" },
+  { name: "Jupyter Notebook", category: "tools" },
+  { name: "Google Colab", category: "tools" },
   
   // Soft Skills
-  { name: "Problem Solving", level: 5, category: "soft" },
-  { name: "Team Collaboration", level: 5, category: "soft" },
-  { name: "Communication", level: 4, category: "soft" },
-  { name: "Project Management", level: 4, category: "soft" }
+  { name: "Critical Thinking", category: "soft" },
+  { name: "Adaptability", category: "soft" },
+  { name: "Team Collaboration", category: "soft" },
+  { name: "Communication", category: "soft" },
+  { name: "Continuous Learning", category: "soft" },
+  { name: "Time Management", category: "soft" },
+  { name: "Project Management", category: "soft" }
 ];
 
 export const mediaItems: MediaItem[] = [
