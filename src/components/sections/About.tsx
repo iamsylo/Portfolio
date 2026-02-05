@@ -25,35 +25,11 @@ const SkillTag = ({ skill }: { skill: any }) => {
   );
 };
 
-const SkillBar = ({ skill }: { skill: any }) => {
-  const Icon = skillIcons[skill.category as keyof typeof skillIcons];
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex items-center space-x-4 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-gray-600 transition-shadow"
-    >
-      <div className="flex-shrink-0">
-        <Icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
-      </div>
-      <div className="flex-1">
-        <div className="flex items-center">
-          <span className="text-sm font-medium text-gray-900 dark:text-white">{skill.name}</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 export default function About() {
   const techStackGroups = [
     { key: 'frontend', label: 'Frontend' },
     { key: 'backend', label: 'Backend' },
-    { key: 'ai', label: 'AI / Machine Learning' },
-    { key: 'devtools', label: 'Dev Tools' }
+    { key: 'ai', label: 'AI / Machine Learning' }
   ] as const;
 
   const skillCategories = {

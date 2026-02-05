@@ -145,6 +145,8 @@ export const skills: Skill[] = [
   // Tech Stack - Frontend
   { name: "JavaScript", category: "tech", group: "frontend" },
   { name: "TypeScript", category: "tech", group: "frontend" },
+  { name: "HTML", category: "tech", group: "frontend" },
+  { name: "CSS", category: "tech", group: "frontend" },
   { name: "Tailwind CSS", category: "tech", group: "frontend" },
   { name: "React", category: "tech", group: "frontend" },
   { name: "Vite", category: "tech", group: "frontend" },
@@ -171,6 +173,7 @@ export const skills: Skill[] = [
   
   // Tools
   { name: "Microsoft Office Suite", category: "tools" },
+  { name: "Git", category: "tools" },
   { name: "GitHub", category: "tools" },
   { name: "VS Code", category: "tools" },
   { name: "Discord", category: "tools" },
@@ -179,12 +182,9 @@ export const skills: Skill[] = [
   { name: "Google Colab", category: "tools" },
   
   // Soft Skills
-  { name: "Critical Thinking", category: "soft" },
-  { name: "Adaptability", category: "soft" },
+  { name: "Problem Solving", category: "soft" },
   { name: "Team Collaboration", category: "soft" },
   { name: "Communication", category: "soft" },
-  { name: "Continuous Learning", category: "soft" },
-  { name: "Time Management", category: "soft" },
   { name: "Project Management", category: "soft" }
 ];
 

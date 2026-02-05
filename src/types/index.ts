@@ -39,7 +39,7 @@ export interface Skill {
   name: string;
   level?: number; // 1-5 (optional)
   category: 'tech' | 'design' | 'tools' | 'soft';
-  group?: 'frontend' | 'backend' | 'ai' | 'devtools';
+  group?: 'frontend' | 'backend' | 'ai';
   icon?: string;
 }
 
