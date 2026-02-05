@@ -103,7 +103,7 @@ export default function Hero() {
 
               <motion.a
                 href="/Resume.pdf"
-                download="Resume.pdf"
+                download="Pagatpatan,Christian Joseph_Resume.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-secondary inline-flex items-center"
