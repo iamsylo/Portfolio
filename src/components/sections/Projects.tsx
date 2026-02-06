@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Code, Smartphone, Monitor, Brain, Filter } from 'lucide-react';
+import { Github, ExternalLink, Code, Smartphone, Monitor, Brain, Filter, ArrowRight } from 'lucide-react';
 import { projects } from '../../data/portfolio';
+import type { Project } from '../../types';
 
 const categoryIcons = {
   web: Monitor,
@@ -11,9 +12,9 @@ const categoryIcons = {
   other: Code
 };
 
-const ProjectCard = ({ project, index }: { project: any, index: number }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
   const Icon = categoryIcons[project.category as keyof typeof categoryIcons];
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
@@ -21,124 +22,131 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="relative h-96 perspective-1000"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onTouchStart={() => setIsFlipped(!isFlipped)}
+      className="group relative rounded-2xl overflow-hidden bg-gray-900 dark:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-200 cursor-pointer h-80"
+      style={{ perspective: '1200px', willChange: 'transform' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <motion.div
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        style={{ willChange: 'transform' }}
-        className="relative w-full h-full transform-style-preserve-3d"
+      <div
+        className="absolute inset-0 transition-transform duration-500 ease-out"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: isHovered ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          willChange: 'transform'
+        }}
       >
-        {/* Front of card */}
-        <div className="absolute inset-0 backface-hidden">
-          <div className="card h-full flex flex-col">
-            <div className="relative overflow-hidden rounded-lg mb-4 flex-1">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute top-4 right-4">
-                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-2 rounded-full">
-                  <Icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+        {/* Front Face */}
+        <div
+          className="absolute inset-0"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-300"
+              style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+          </div>
+
+          <div className="absolute inset-0 p-6 flex flex-col justify-between">
+            <div className="flex justify-between items-start">
+              <div className="inline-flex">
+                <div className="bg-white/20 backdrop-blur-md p-3 rounded-full group-hover:bg-white/30 transition-all">
+                  <Icon className="h-6 w-6 text-white" />
                 </div>
               </div>
               {project.featured && (
-                <div className="absolute top-4 left-4">
-                  <span className="bg-primary-600 text-white text-xs px-2 py-1 rounded-full">
-                    Featured
-                  </span>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold"
+                >
+                  Featured
+                </motion.div>
               )}
             </div>
-            
+
             <div className="space-y-3">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{project.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-1">
-                {project.technologies.slice(0, 3).map((tech: string) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-200 text-xs rounded"
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-gray-200 text-sm line-clamp-2">{project.description}</p>
+              </div>
+
+              <motion.div
+                className="self-end"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ArrowRight className="h-5 w-5 text-white/80" />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Back Face */}
+        <div
+          className="absolute inset-0"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          <div className="h-full w-full p-6 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-800/95 text-white">
+            <div className="flex flex-col h-full gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-cyan-300">{project.category}</p>
+                <h3 className="text-2xl font-bold">{project.title}</h3>
+              </div>
+
+              <div className="flex-1 overflow-y-auto pr-1 space-y-3">
+                <p className="text-gray-200 text-sm">{project.longDescription}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech: string) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-white/15 backdrop-blur-sm text-white text-xs rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-3 pt-1">
+                {project.githubUrl && (
+                  <motion.a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/15 hover:bg-white/25 text-white rounded-lg transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded">
-                    +{project.technologies.length - 3}
-                  </span>
+                    <Github className="h-4 w-4" />
+                    Code
+                  </motion.a>
+                )}
+                {project.liveUrl && (
+                  <motion.a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-lg transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Live
+                  </motion.a>
                 )}
               </div>
             </div>
           </div>
         </div>
-
-        {/* Back of card */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180">
-          <div className="card h-full flex flex-col justify-between">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{project.longDescription}</p>
-              
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Technologies</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {project.technologies.map((tech: string) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-200 text-xs rounded"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex space-x-3 mt-4">
-              {project.githubUrl && (
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 btn-secondary text-center inline-flex items-center justify-center text-sm py-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  <Github className="h-4 w-4 mr-2" />
-                  Code
-                </motion.a>
-              )}
-              {project.liveUrl && (
-                <motion.a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 btn-primary text-center inline-flex items-center justify-center text-sm py-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Live Demo
-                </motion.a>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
+
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -162,6 +170,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-white dark:bg-[#0f1419]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -169,17 +178,18 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">My Projects</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-            A collection of projects showcasing my technical skills and creative problem-solving abilities
-          </p>
-          <motion.div 
-            className="w-20 h-1 bg-primary-600 mx-auto"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
+          <motion.h2 
+            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          ></motion.div>
+            transition={{ duration: 0.6 }}
+          >
+            Featured Works
+          </motion.h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Showcasing projects that demonstrate my full-stack capabilities and creative solutions
+          </p>
         </motion.div>
 
         {/* Category Filters */}
@@ -188,7 +198,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-4 mb-16"
         >
           {categories.map((category, index) => {
             const Icon = category.icon;
@@ -196,10 +206,10 @@ export default function Projects() {
               <motion.button
                 key={category.value}
                 onClick={() => filterProjects(category.value)}
-                className={`flex items-center px-4 py-2 rounded-full font-medium transition-all ${
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold transition-all ${
                   selectedCategory === category.value
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/50'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20'
                 }`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -208,14 +218,14 @@ export default function Projects() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Icon className="h-4 w-4 mr-2" />
+                <Icon className="h-4 w-4" />
                 {category.label}
               </motion.button>
             );
           })}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - Masonry Layout */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
@@ -223,15 +233,22 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-              />
-            ))}
+            {/* All Projects Grid */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
+            >
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 
@@ -239,33 +256,38 @@ export default function Projects() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-12"
+            className="text-center py-16"
           >
-            <Filter className="h-12 w-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-600 dark:text-gray-400">No projects found in this category.</p>
+            <Filter className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
+            <p className="text-gray-600 dark:text-gray-400 text-lg">No projects found in this category.</p>
           </motion.div>
         )}
 
-        {/* Call to action */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-20"
         >
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Interested in working together on a project?
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="btn-primary"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Let's Collaborate
-          </motion.button>
+          <div className="flex flex-col items-center gap-6">
+            <div className="inline-flex items-center gap-3 glass-effect px-6 py-3 rounded-full">
+              <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                Want to collaborate?
+              </span>
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary btn-hover-effect inline-flex items-center gap-2 text-lg"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Get In Touch
+              <ArrowRight className="h-5 w-5" />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

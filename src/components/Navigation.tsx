@@ -6,7 +6,7 @@ import { useTheme } from '../contexts/ThemeContext';
 interface NavItem {
   name: string;
   href: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const navItems: NavItem[] = [
@@ -61,60 +61,104 @@ export default function Navigation() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/95 dark:bg-[#0f1419]/95 backdrop-blur-md shadow-lg'
-            : 'bg-white/80 dark:bg-[#0f1419]/80 backdrop-blur-md'
+            ? 'bg-white/90 dark:bg-[#0f1419]/90 backdrop-blur-xl shadow-lg shadow-cyan-500/10'
+            : 'bg-white/50 dark:bg-[#0f1419]/50 backdrop-blur-lg'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 sm:h-20">
+            {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex-shrink-0"
+              whileTap={{ scale: 0.95 }}
+              className="flex-shrink-0 flex items-center gap-3 group cursor-pointer"
             >
-              <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">
-                Portfolio
-              </h1>
+              <div
+                role="img"
+                aria-label="Logo"
+                className="h-20 w-20 sm:h-24 sm:w-24 bg-gradient-to-r from-cyan-500 to-blue-600"
+                style={{
+                  WebkitMaskImage: "url('/sylo.svg')",
+                  maskImage: "url('/sylo.svg')",
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain'
+                }}
+              />
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navItems.map((item) => (
-                  <motion.button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.href)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      activeSection === item.href.slice(1)
-                        ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.name}
-                  </motion.button>
-                ))}
-                
-                {/* Theme Toggle Button */}
-                <motion.button
-                  onClick={toggleTheme}
-                  className="px-3 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                >
-                  {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                </motion.button>
+            <div className="hidden md:flex items-center gap-8">
+              <div className="flex items-baseline gap-2">
+                {navItems.map((item, index) => {
+                  const Icon = item.icon;
+                  const isActive = activeSection === item.href.slice(1);
+                  
+                  return (
+                    <motion.button
+                      key={item.name}
+                      onClick={() => scrollToSection(item.href)}
+                      className="relative group"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <div className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${
+                        isActive
+                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20'
+                          : 'hover:bg-white/50 dark:hover:bg-white/10'
+                      }`}>
+                        <Icon className={`h-4 w-4 transition-colors ${
+                          isActive 
+                            ? 'text-cyan-600' 
+                            : 'text-gray-700 dark:text-gray-300 group-hover:text-cyan-600'
+                        }`} />
+                        <span className={`text-sm font-semibold transition-colors ${
+                          isActive
+                            ? 'text-cyan-600 dark:text-cyan-400'
+                            : 'text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400'
+                        }`}>
+                          {item.name}
+                        </span>
+                      </div>
+                      
+                      {/* Animated underline */}
+                      {isActive && (
+                        <motion.div
+                          layoutId="navUnderline"
+                          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                    </motion.button>
+                  );
+                })}
               </div>
+              
+              {/* Theme Toggle Button */}
+              <motion.button
+                onClick={toggleTheme}
+                className="p-2.5 rounded-lg bg-white/50 dark:bg-white/10 hover:bg-white/70 dark:hover:bg-white/20 text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all"
+                whileHover={{ scale: 1.1, rotate: 20 }}
+                whileTap={{ scale: 0.95 }}
+                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+              </motion.button>
             </div>
 
-            <div className="md:hidden flex items-center space-x-2">
+            {/* Mobile Navigation Controls */}
+            <div className="md:hidden flex items-center gap-2">
               {/* Mobile Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all"
                 whileTap={{ scale: 0.95 }}
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
               >
@@ -124,7 +168,7 @@ export default function Navigation() {
               {/* Mobile menu button */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all"
                 whileTap={{ scale: 0.95 }}
               >
                 {isOpen ? (
@@ -141,24 +185,27 @@ export default function Navigation() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="md:hidden bg-white dark:bg-[#0f1419] shadow-lg border-t dark:border-purple-900/30"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white/95 dark:bg-[#0f1419]/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-700/50 shadow-lg"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1">
+              <div className="px-4 pt-3 pb-4 space-y-2">
                 {navItems.map((item) => {
                   const Icon = item.icon;
+                  const isActive = activeSection === item.href.slice(1);
+                  
                   return (
                     <motion.button
                       key={item.name}
                       onClick={() => scrollToSection(item.href)}
-                      className={`w-full flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        activeSection === item.href.slice(1)
-                          ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20'
+                      className={`w-full flex items-center px-4 py-3 rounded-lg font-semibold transition-all ${
+                        isActive
+                          ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-600 dark:text-cyan-400'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 hover:text-cyan-600 dark:hover:text-cyan-400'
                       }`}
                       whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       <Icon className="h-5 w-5 mr-3" />
                       {item.name}
@@ -171,16 +218,16 @@ export default function Navigation() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* Scroll indicator */}
+      {/* Animated scroll progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-600 z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 z-50"
         style={{
           scaleX: scrolled ? 1 : 0,
           transformOrigin: '0%'
         }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: scrolled ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.5 }}
       />
     </>
   );

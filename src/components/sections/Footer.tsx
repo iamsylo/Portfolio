@@ -123,7 +123,7 @@ export default function Footer() {
             
             <motion.button
               onClick={scrollToTop}
-              className="mt-4 sm:mt-0 bg-primary-600 hover:bg-primary-700 text-white p-2 rounded-full transition-colors"
+              className="mt-4 sm:mt-0 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white p-2 rounded-full transition-colors shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0 }}

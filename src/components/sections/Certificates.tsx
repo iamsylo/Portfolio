@@ -2,8 +2,9 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Calendar } from 'lucide-react';
 import { certificates } from '../../data/portfolio';
+import type { Certificate } from '../../types';
 
-const CertificateCard = ({ certificate, index }: { certificate: any, index: number }) => {
+const CertificateCard = ({ certificate, index }: { certificate: Certificate, index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -25,7 +26,7 @@ const CertificateCard = ({ certificate, index }: { certificate: any, index: numb
       
       <div className="space-y-3">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">{certificate.title}</h3>
-        <p className="text-primary-600 dark:text-primary-400 font-medium">{certificate.issuer}</p>
+        <p className="text-cyan-600 dark:text-cyan-400 font-medium">{certificate.issuer}</p>
         
         <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
           <Calendar className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" />
@@ -39,7 +40,7 @@ const CertificateCard = ({ certificate, index }: { certificate: any, index: numb
           {certificate.skills.map((skill: string) => (
             <span
               key={skill}
-              className="px-2 py-1 bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-200 text-xs rounded"
+              className="px-2 py-1 bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 text-cyan-700 dark:text-cyan-300 text-xs rounded border border-cyan-300/50 dark:border-cyan-500/30"
             >
               {skill}
             </span>
@@ -51,7 +52,7 @@ const CertificateCard = ({ certificate, index }: { certificate: any, index: numb
             href={certificate.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 text-sm font-medium"
+            className="inline-flex items-center text-cyan-600 dark:text-cyan-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-medium transition-colors"
             whileHover={{ x: 5 }}
           >
             <ExternalLink className="h-4 w-4 mr-1" />
@@ -77,7 +78,7 @@ export default function Certificates() {
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             Professional certifications and achievements that showcase my commitment to continuous learning
           </p>
-          <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

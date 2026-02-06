@@ -1,24 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Code, Palette, Camera, Award } from 'lucide-react';
+import { Code, Palette, Award, User } from 'lucide-react';
 import { personalInfo, skills } from '../../data/portfolio';
+import type { Skill } from '../../types';
 
 const skillIcons = {
-  tech: Code,
   design: Palette,
   tools: Award,
   soft: User
 };
 
-const SkillTag = ({ skill }: { skill: any }) => {
+const SkillTag = ({ skill }: { skill: Skill }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      whileHover={{ scale: 1.05, y: -2 }}
-      className="inline-block px-3 py-1.5 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium border border-primary-200 dark:border-primary-800 hover:border-primary-400 dark:hover:border-primary-600 transition-all"
+      className="inline-block px-4 py-2 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 dark:from-cyan-500/30 dark:to-purple-500/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-semibold border border-cyan-300/50 dark:border-cyan-500/30 hover:border-cyan-500 dark:hover:border-cyan-400 hover:scale-105 hover:-translate-y-1 transition-all duration-200 backdrop-blur-sm"
     >
       {skill.name}
     </motion.div>
@@ -40,8 +39,13 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-[#0f1419]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#0f1419] dark:via-[#1a1f2e] dark:to-[#0f1419] relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute -top-40 right-0 w-80 h-80 bg-cyan-300/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute -bottom-40 left-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,82 +53,114 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
-          <motion.div 
-            className="w-20 h-1 bg-primary-600 dark:bg-primary-400 mx-auto"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
+          <motion.h2 
+            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          ></motion.div>
+            transition={{ duration: 0.6 }}
+          >
+            About My Journey
+          </motion.h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Computer Science graduate passionate about creating exceptional digital experiences
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Image */}
+        {/* Bio Section with Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* Image with decorative elements */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center"
+            transition={{ duration: 0.6 }}
+            className="flex justify-center relative"
           >
-            <div className="relative">
+            {/* Floating background shapes */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 opacity-30 pointer-events-none"
+            >
+              <svg className="w-96 h-96" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="200" cy="200" r="180" stroke="url(#grad)" strokeWidth="2" strokeDasharray="10 5"/>
+                <defs>
+                  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#06b6d4"/>
+                    <stop offset="100%" stopColor="#a855f7"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10"
+            >
               <motion.div
-                whileHover={{ rotate: 2, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-2xl group"
               >
                 <img
                   src="/Pagatpatan_11.jpg"
                   alt="About me"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/30 via-transparent to-purple-600/30"></div>
               </motion.div>
+
+              {/* Floating badge */}
               <motion.div
-                initial={{ scale: 0, rotate: -90 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                whileHover={{ rotate: 12, scale: 1.1 }}
-                className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg dark:shadow-gray-700"
+                animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -bottom-6 -right-6 bg-gradient-to-br from-cyan-500/80 to-purple-600/80 dark:from-cyan-500 dark:to-purple-600 p-6 rounded-2xl shadow-2xl glass-effect border border-cyan-300/50 dark:border-cyan-500/30"
               >
-                <Camera className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+                <div className="text-2xl font-black text-gray-900 dark:text-white">Sylo</div>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Bio */}
+          {/* Bio Content */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full w-fit"
+            >
+              <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Who I am</span>
+            </motion.div>
+
+            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed font-semibold">
               {personalInfo.bio}
             </p>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
               I specialize in creating responsive and user-friendly web interfaces while maintaining 
-              basic backend capabilities for database management. My skill set extends to document 
-              management and data entry, ensuring comprehensive digital solutions. I also have a 
-              passion for photography and videography, bringing visual storytelling to complement 
-              my technical abilities.
+              basic backend capabilities for database management. My approach combines technical 
+              expertise with a passion for solving real-world problems.
             </p>
+
           </motion.div>
         </div>
 
-        {/* Skills */}
+        {/* Skills Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-12 text-center">Skills & Expertise</h3>
-          
-          {/* Tech Stack Section */}
+          {/* Tech Stack */}
           <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -133,12 +169,12 @@ export default function About() {
               transition={{ duration: 0.4 }}
               className="space-y-8"
             >
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
-                {React.createElement(skillIcons.tech, {
-                  className: "h-5 w-5 mr-2 text-primary-600 dark:text-primary-400"
-                })}
-                Tech Stack
-              </h4>
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                  <Code className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h3>
+              </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {techStackGroups.map((group) => {
@@ -155,14 +191,15 @@ export default function About() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.4 }}
-                      className="space-y-3"
+                      className="space-y-4 p-6 rounded-2xl glass-effect hover:shadow-lg transition-all"
                     >
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"></span>
                         {group.label}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {groupSkills.map((skill) => (
-                          <SkillTag key={skill.name} skill={skill} />
+                        {groupSkills.map((skill, idx) => (
+                          <SkillTag key={skill.name} skill={skill} index={idx} />
                         ))}
                       </div>
                     </motion.div>
@@ -173,27 +210,31 @@ export default function About() {
           </div>
 
           {/* Other Skills */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {['design', 'tools', 'soft'].map((category, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {['design', 'tools', 'soft'].map((category, categoryIndex) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
                 className="space-y-4"
               >
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
-                  {React.createElement(skillIcons[category as keyof typeof skillIcons], {
-                    className: "h-5 w-5 mr-2 text-primary-600 dark:text-primary-400"
-                  })}
+                <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  <span className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                    {React.createElement(skillIcons[category as keyof typeof skillIcons], {
+                      className: "h-5 w-5 text-white"
+                    })}
+                  </span>
                   {category === 'design' ? 'Design' :
                    category === 'tools' ? 'Tools' : 'Soft Skills'}
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {skillCategories[category as keyof typeof skillCategories].map((skill) => (
-                    <SkillTag key={skill.name} skill={skill} />
-                  ))}
+                </p>
+                <div className="p-6 rounded-2xl glass-effect hover:shadow-lg transition-all h-full">
+                  <div className="flex flex-wrap gap-2">
+                    {skillCategories[category as keyof typeof skillCategories].map((skill, idx) => (
+                      <SkillTag key={skill.name} skill={skill} index={idx} />
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}

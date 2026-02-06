@@ -243,6 +243,11 @@ export const contactInfo: ContactInfo = {
       url: "https://linkedin.com/in/christian-joseph-pagatpatan-971308381",
       icon: "linkedin"
     },
+        {
+      platform: "Facebook",
+      url: "https://www.facebook.com/iamsidyey/",
+      icon: "facebook"
+    },
     {
       platform: "Instagram",
       url: "https://www.instagram.com/sylo.jpg/",
