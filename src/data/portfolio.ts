@@ -3,8 +3,8 @@ import type { Experience, Project, Certificate, Skill, MediaItem, ContactInfo } 
 export const personalInfo = {
   name: "Christian Joseph R. Pagatpatan",
   title: "Computer Science Graduate",
-  subtitle: "Data Entry Specialist | Document & Data Management | Front-End Developer | Database Management | Photographer",
-  bio: "Computer science graduate specializing in front-end development with foundational backend skills in database management. I excel at creating user-friendly web interfaces and have experience in document management, data entry, and visual content creation through photography and videography.",
+  subtitle: "Data Entry Specialist | Document & Data Management | Front-End Developer | Android App Developer | Database Management | Photographer",
+  bio: "Computer science graduate specializing in front-end development and Android app development with foundational backend skills in database management. I excel at creating user-friendly web and mobile interfaces and have experience in document management, data entry, and visual content creation through photography and videography.",
   location: "Sulvec, Narvacan, Ilocos Sur, Philippines",
   email: "pagatpatan.christianjoseph@gmail.com",
   phone: "+63 (927) 713-0119",
