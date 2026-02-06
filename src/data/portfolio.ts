@@ -69,8 +69,8 @@ export const projects: Project[] = [
   {
     id: "proj-1",
     title: "OTICURE",
-    description: "AI-powered mobile health application using machine learning for medication management",
-    longDescription: "OTICURE tackles medication non-adherence using AI and machine learning algorithms. The app provides personalized medication recommendations, intelligent reminders, and real-time drug identification to improve patient outcomes and reduce healthcare costs.",
+    description: "Thesis Final Output",
+    longDescription: "An AI-powered mobile health application that tackles medication non-adherence using advanced machine learning algorithms. The app provides personalized medication recommendations, intelligent reminders, and real-time drug identification to improve patient outcomes and reduce healthcare costs.",
     image: "/oticure.png",
     technologies: ["Flutter", "Dart", "Firebase", "Machine Learning", "TF-IDF Algorithm", "Python", "Scikit-learn"],
     githubUrl: "https://github.com/iamsylo/medknows",
