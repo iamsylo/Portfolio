@@ -115,7 +115,7 @@ export default function About() {
               <motion.div
                 animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-6 -right-6 bg-gradient-to-br from-cyan-500/80 to-purple-600/80 dark:from-cyan-500 dark:to-purple-600 p-6 rounded-2xl shadow-2xl glass-effect border border-cyan-300/50 dark:border-cyan-500/30"
+                className="absolute hidden sm:flex -bottom-6 -right-6 bg-gradient-to-br from-cyan-500/80 to-purple-600/80 dark:from-cyan-500 dark:to-purple-600 p-6 rounded-2xl shadow-2xl glass-effect border border-cyan-300/50 dark:border-cyan-500/30"
               >
                 <div className="text-2xl font-black text-gray-900 dark:text-white">Sylo</div>
               </motion.div>
@@ -210,7 +210,7 @@ export default function About() {
           </div>
 
           {/* Other Skills */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {['design', 'tools', 'soft'].map((category, categoryIndex) => (
               <motion.div
                 key={category}
@@ -229,7 +229,7 @@ export default function About() {
                   {category === 'design' ? 'Design' :
                    category === 'tools' ? 'Tools' : 'Soft Skills'}
                 </p>
-                <div className="p-6 rounded-2xl glass-effect hover:shadow-lg transition-all h-full">
+                <div className="p-6 rounded-2xl glass-effect hover:shadow-lg transition-all">
                   <div className="flex flex-wrap gap-2">
                     {skillCategories[category as keyof typeof skillCategories].map((skill) => (
                       <SkillTag key={skill.name} skill={skill} />

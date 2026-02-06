@@ -172,7 +172,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative hidden lg:flex justify-center items-center"
+            className="relative flex justify-center items-center"
           >
             {/* Floating background shapes */}
             <motion.div
@@ -198,7 +198,7 @@ export default function Hero() {
               className="relative z-10"
             >
               <div
-                className="relative w-80 h-96 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 hover:rotate-2 transition-all duration-300"
+                className="relative w-64 sm:w-72 md:w-80 h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 hover:rotate-2 transition-all duration-300"
               >
                 <img
                   src={personalInfo.avatar}
