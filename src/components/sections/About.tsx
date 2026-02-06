@@ -198,8 +198,8 @@ export default function About() {
                         {group.label}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {groupSkills.map((skill, idx) => (
-                          <SkillTag key={skill.name} skill={skill} index={idx} />
+                        {groupSkills.map((skill) => (
+                          <SkillTag key={skill.name} skill={skill} />
                         ))}
                       </div>
                     </motion.div>
@@ -231,8 +231,8 @@ export default function About() {
                 </p>
                 <div className="p-6 rounded-2xl glass-effect hover:shadow-lg transition-all h-full">
                   <div className="flex flex-wrap gap-2">
-                    {skillCategories[category as keyof typeof skillCategories].map((skill, idx) => (
-                      <SkillTag key={skill.name} skill={skill} index={idx} />
+                    {skillCategories[category as keyof typeof skillCategories].map((skill) => (
+                      <SkillTag key={skill.name} skill={skill} />
                     ))}
                   </div>
                 </div>
