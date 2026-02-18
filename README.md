@@ -10,6 +10,40 @@ A modern, responsive portfolio website built with React, TypeScript, Tailwind CS
 - **Type-Safe**: Built with TypeScript for better development experience
 - **Fast**: Optimized with Vite for fast development and build times
 
+## 🛡️ Netlify Usage & Abuse Hardening
+
+This project includes deployment safeguards to reduce bandwidth waste and abusive probing:
+
+- Backup assets are automatically removed from production output (`dist/graphics_backup`)
+- Security headers are configured via `netlify.toml` (CSP, HSTS, frame blocking, etc.)
+- Long-term caching is enabled for hashed build assets (`/assets/*`)
+- Common bot probe paths (`/wp-admin/*`, `/.git/*`, etc.) are force-404 redirected
+
+### Edge Rate Limiting (recommended)
+
+The project includes an Edge Function at `netlify/edge-functions/rate-limit.ts` that rate-limits by client IP and returns `429` when traffic exceeds your threshold.
+
+Set these environment variables in Netlify site settings:
+
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+- `RATE_LIMIT_REQUESTS` (optional, default: `60`)
+- `RATE_LIMIT_WINDOW_SECONDS` (optional, default: `60`)
+- `RATE_LIMIT_ALLOWLIST` (optional, comma-separated exact IPs and/or IPv4 CIDR ranges)
+
+Suggested starting values:
+
+- `RATE_LIMIT_REQUESTS=60`
+- `RATE_LIMIT_WINDOW_SECONDS=60`
+
+Allowlist example:
+
+- `RATE_LIMIT_ALLOWLIST=203.0.113.4,198.51.100.0/24`
+
+After setting env vars, trigger a fresh deploy so the Edge Function picks up the values.
+
+Important: no static-site config can fully stop large DDoS traffic by itself. For stronger protection, put the site behind Cloudflare (or equivalent WAF/rate limiting) in front of Netlify.
+
 ## 🛠️ Tech Stack
 
 - **Framework**: React 18 with TypeScript
