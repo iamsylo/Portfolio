@@ -86,39 +86,47 @@ function shouldSkipRateLimit(pathname: string): boolean {
 }
 
 async function incrementWindowCounter(redisUrl: string, redisToken: string, key: string, ttlSeconds: number): Promise<number | null> {
-  const pipelineResponse = await fetch(`${redisUrl}/pipeline`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${redisToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify([
-      ['INCR', key],
-      ['EXPIRE', key, ttlSeconds],
-    ]),
-  });
+  try {
+    const pipelineResponse = await fetch(`${redisUrl}/pipeline`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${redisToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify([
+        ['INCR', key],
+        ['EXPIRE', key, ttlSeconds],
+      ]),
+    });
 
-  if (!pipelineResponse.ok) {
+    if (!pipelineResponse.ok) {
+      return null;
+    }
+
+    const pipelineData = await pipelineResponse.json();
+    const count = pipelineData?.[0]?.result;
+    return typeof count === 'number' ? count : null;
+  } catch {
     return null;
   }
-
-  const pipelineData = await pipelineResponse.json();
-  const count = pipelineData?.[0]?.result;
-  return typeof count === 'number' ? count : null;
 }
 
-export default async (request: Request): Promise<Response> => {
+type NetlifyEdgeContext = {
+  next: () => Promise<Response>;
+};
+
+export default async (request: Request, context: NetlifyEdgeContext): Promise<Response> => {
   const url = new URL(request.url);
 
   if (shouldSkipRateLimit(url.pathname)) {
-    return fetch(request);
+    return context.next();
   }
 
   const redisUrl = Deno.env.get('UPSTASH_REDIS_REST_URL');
   const redisToken = Deno.env.get('UPSTASH_REDIS_REST_TOKEN');
 
   if (!redisUrl || !redisToken) {
-    return fetch(request);
+    return context.next();
   }
 
   const limit = getEnvNumber('RATE_LIMIT_REQUESTS', DEFAULT_LIMIT);
@@ -126,7 +134,7 @@ export default async (request: Request): Promise<Response> => {
   const clientIp = getClientIp(request);
 
   if (isAllowlisted(clientIp)) {
-    return fetch(request);
+    return context.next();
   }
 
   const windowBucket = Math.floor(Date.now() / (windowSeconds * 1000));
@@ -135,7 +143,7 @@ export default async (request: Request): Promise<Response> => {
   const currentCount = await incrementWindowCounter(redisUrl, redisToken, redisKey, windowSeconds + 5);
 
   if (currentCount === null) {
-    return fetch(request);
+    return context.next();
   }
 
   if (currentCount > limit) {
@@ -149,7 +157,7 @@ export default async (request: Request): Promise<Response> => {
     });
   }
 
-  const response = await fetch(request);
+  const response = await context.next();
   const headers = new Headers(response.headers);
   headers.set('X-RateLimit-Limit', String(limit));
   headers.set('X-RateLimit-Remaining', String(Math.max(0, limit - currentCount)));
