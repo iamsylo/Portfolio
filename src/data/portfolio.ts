@@ -8,7 +8,7 @@ export const personalInfo = {
   location: "Sulvec, Narvacan, Ilocos Sur, Philippines",
   email: "pagatpatan.christianjoseph@gmail.com",
   phone: "+63 (927) 713-0119",
-  avatar: "/Pagatpatan_10.jpg"  // Change this to match your image filename
+  avatar: "/optimized/hero-avatar.webp"
 };
 
 export const experiences: Experience[] = [
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "OTICURE",
     description: "Thesis Final Output",
     longDescription: "An AI-powered mobile health application that tackles medication non-adherence using advanced machine learning algorithms. The app provides personalized medication recommendations, intelligent reminders, and real-time drug identification to improve patient outcomes and reduce healthcare costs.",
-    image: "/oticure.png",
+    image: "/optimized/oticure.webp",
     technologies: ["Flutter", "Dart", "Firebase", "Machine Learning", "TF-IDF Algorithm", "Python", "Scikit-learn"],
     githubUrl: "https://github.com/iamsylo/medknows",
     category: "mobile",
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     title: "Portfolio Website",
     description: "Modern, responsive personal portfolio website with dark mode and interactive animations",
     longDescription: "A comprehensive personal portfolio website showcasing professional experience, projects, and creative work. Features include responsive design, dark/light theme toggle, smooth animations, interactive project galleries, and contact forms. Built with modern web technologies for optimal performance and user experience.",
-    image: "/portfolio.png",
+    image: "/optimized/portfolio.webp",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
     githubUrl: "https://github.com/iamsylo/portfolio",
     liveUrl: "https://syloportfolio.netlify.app/",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     title: "UNP ALPHA",
     description: "Academic Liaison for Processing and Handling Activities",
     longDescription: "A responsive web application prototype that streamlines office tasks including event scheduling, memo management, multimedia posting, and status tracking. Includes comprehensive user documentation for navigation and report generation.",
-    image: "/dts.png",
+    image: "/optimized/dts.webp",
     technologies: ["Firebase", "CSS", "HTML", "TypeScript"],
     githubUrl: "https://github.com/iamsylo/Document-Tracking-System",
     category: "web",
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     title: "PILIpinas",
     description: "Educational Android game raising awareness about West Philippine Sea territorial issues",
     longDescription: "Educational Android game about West Philippine Sea territorial issues featuring interactive quizzes and fact-based modules. Built with Flutter for optimal mobile performance.",
-    image: "/pilipinas.png",
+    image: "/optimized/pilipinas.webp",
     technologies: ["Flutter", "Dart", "Firebase", "Android Development", "UI/UX Design"],
     githubUrl: "https://github.com/iamsylo/pilipinas",
     category: "mobile",
@@ -194,7 +194,7 @@ export const mediaItems: MediaItem[] = [
     id: "gd-1",
     title: "Shutter Brew",
     type: "photo",
-    image: "/graphics/brand.png",
+    image: "/optimized/brand.webp",
     category: "Graphic Design",
     description: "a photo-café brand identity that blends photography with coffee culture, centered on a logo merging a camera and a coffee cup (stylized aperture) and the tagline “Capture the Moment. Sip the Mood.”",
     featured: true
@@ -203,7 +203,7 @@ export const mediaItems: MediaItem[] = [
     id: "gd-2",
     title: "Book Cover",
     type: "photo",
-    image: "/graphics/book.png",
+    image: "/optimized/book.webp",
     category: "Graphic Design",
     description: "Design that fuses music and visual arts with bold colors, dynamic silhouettes, and symbolic elements. The playful yet structured layout captures creativity, rhythm, and expression.",
     featured: false
@@ -212,7 +212,7 @@ export const mediaItems: MediaItem[] = [
     id: "gd-3",
     title: "Tarpaulin Design",
     type: "photo",
-    image: "/graphics/tarp.png",
+    image: "/optimized/tarp.webp",
     category: "Graphic Design",
     description: "The layout combines formal academic elements with a vibrant, professional aesthetic to highlight the graduates’ achievements while maintaining clarity and visual balance.",
     featured: false
@@ -221,7 +221,7 @@ export const mediaItems: MediaItem[] = [
     id: "gd-4",
     title: "Poster Design",
     type: "photo",
-    image: "/graphics/poster.png",
+    image: "/optimized/poster.webp",
     category: "Graphic Design",
     description: "The design emphasizes user-friendliness and accessibility to ensure effective medication management.",
     featured: false

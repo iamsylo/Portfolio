@@ -4,6 +4,12 @@ import { Code, Palette, Award, User } from 'lucide-react';
 import { personalInfo, skills } from '../../data/portfolio';
 import type { Skill } from '../../types';
 
+const aboutAvatarSrcSet = [
+  '/optimized/about-avatar-480.webp 480w',
+  '/optimized/about-avatar-720.webp 720w',
+  '/optimized/about-avatar-960.webp 960w'
+].join(', ');
+
 const skillIcons = {
   design: Palette,
   tools: Award,
@@ -104,8 +110,14 @@ export default function About() {
                 className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-2xl group"
               >
                 <img
-                  src="/Pagatpatan_11.jpg"
+                  src="/optimized/about-avatar.webp"
+                  srcSet={aboutAvatarSrcSet}
+                  sizes="(max-width: 1024px) 70vw, 320px"
                   alt="About me"
+                  width={960}
+                  height={960}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/30 via-transparent to-purple-600/30"></div>

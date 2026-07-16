@@ -3,6 +3,12 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail, Facebook, Instagram } from 'lucide-react';
 import { personalInfo } from '../../data/portfolio';
 
+const heroAvatarSrcSet = [
+  '/optimized/hero-avatar-480.webp 480w',
+  '/optimized/hero-avatar-720.webp 720w',
+  '/optimized/hero-avatar-960.webp 960w'
+].join(', ');
+
 export default function Hero() {
   const scrollToAbout = () => {
     const element = document.getElementById('about');
@@ -158,6 +164,7 @@ export default function Hero() {
                   <a
                     key={label}
                     href={url}
+                    aria-label={label}
                     className="p-2 sm:p-3 glass-effect rounded-full hover:bg-gradient-to-br hover:from-cyan-400/20 hover:to-purple-400/20 hover:scale-110 hover:-translate-y-1 active:scale-90 transition-all duration-200"
                   >
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
@@ -202,7 +209,13 @@ export default function Hero() {
               >
                 <img
                   src={personalInfo.avatar}
+                  srcSet={heroAvatarSrcSet}
+                  sizes="(max-width: 1024px) 80vw, 384px"
                   alt="Hero"
+                  width={960}
+                  height={960}
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cyan-600/20 via-transparent to-transparent"></div>

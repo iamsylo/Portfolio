@@ -4,6 +4,33 @@ import { Github, ExternalLink, Code, Smartphone, Monitor, Brain, Filter, ArrowRi
 import { projects } from '../../data/portfolio';
 import type { Project } from '../../types';
 
+const responsiveProjectImages: Record<string, { srcSet: string; sizes: string }> = {
+  '/optimized/portfolio.webp': {
+    srcSet: [
+      '/optimized/portfolio-480.webp 480w',
+      '/optimized/portfolio-768.webp 768w',
+      '/optimized/portfolio-1200.webp 1200w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  },
+  '/optimized/dts.webp': {
+    srcSet: [
+      '/optimized/dts-480.webp 480w',
+      '/optimized/dts-768.webp 768w',
+      '/optimized/dts-1200.webp 1200w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  },
+  '/optimized/pilipinas.webp': {
+    srcSet: [
+      '/optimized/pilipinas-360.webp 360w',
+      '/optimized/pilipinas-540.webp 540w',
+      '/optimized/pilipinas-900.webp 900w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  }
+};
+
 const categoryIcons = {
   web: Monitor,
   mobile: Smartphone,
@@ -43,7 +70,11 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
           <div className="absolute inset-0 overflow-hidden">
             <img
               src={project.image}
+              srcSet={responsiveProjectImages[project.image]?.srcSet}
+              sizes={responsiveProjectImages[project.image]?.sizes}
               alt={project.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-300"
               style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
             />

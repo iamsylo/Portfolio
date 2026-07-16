@@ -4,6 +4,41 @@ import { Camera, X, Play, Filter } from 'lucide-react';
 import { mediaItems } from '../../data/portfolio';
 import type { MediaItem } from '../../types';
 
+const responsiveGalleryImages: Record<string, { srcSet: string; sizes: string }> = {
+  '/optimized/brand.webp': {
+    srcSet: [
+      '/optimized/brand-360.webp 360w',
+      '/optimized/brand-540.webp 540w',
+      '/optimized/brand-900.webp 900w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  },
+  '/optimized/book.webp': {
+    srcSet: [
+      '/optimized/book-360.webp 360w',
+      '/optimized/book-540.webp 540w',
+      '/optimized/book-900.webp 900w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  },
+  '/optimized/tarp.webp': {
+    srcSet: [
+      '/optimized/tarp-480.webp 480w',
+      '/optimized/tarp-768.webp 768w',
+      '/optimized/tarp-1200.webp 1200w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  },
+  '/optimized/poster.webp': {
+    srcSet: [
+      '/optimized/poster-360.webp 360w',
+      '/optimized/poster-540.webp 540w',
+      '/optimized/poster-900.webp 900w'
+    ].join(', '),
+    sizes: '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw'
+  }
+};
+
 // Skeleton loader component
 const ImageSkeleton = () => (
   <div className="w-full h-full bg-gradient-to-r from-gray-200 dark:from-gray-700 via-gray-100 dark:via-gray-600 to-gray-200 dark:to-gray-700 animate-pulse rounded-lg" />
@@ -40,6 +75,7 @@ const MediaModal = ({ item, isOpen, onClose }: { item: MediaItem | null, isOpen:
         >
           <button
             onClick={onClose}
+            aria-label="Close media viewer"
             className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
           >
             <X className="h-5 w-5" />
@@ -129,6 +165,8 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
         {!imageError && (
           <img
             src={item.type === 'photo' ? item.image : item.thumbnail}
+            srcSet={item.type === 'photo' ? responsiveGalleryImages[item.image]?.srcSet : undefined}
+            sizes={item.type === 'photo' ? responsiveGalleryImages[item.image]?.sizes : undefined}
             alt={item.title}
             loading="lazy"
             decoding="async"

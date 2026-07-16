@@ -144,6 +144,7 @@ export default function Navigation() {
               {/* Theme Toggle Button */}
               <motion.button
                 onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 className="p-2.5 rounded-lg bg-white/50 dark:bg-white/10 hover:bg-white/70 dark:hover:bg-white/20 text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all"
                 whileHover={{ scale: 1.1, rotate: 20 }}
                 whileTap={{ scale: 0.95 }}
@@ -158,6 +159,7 @@ export default function Navigation() {
               {/* Mobile Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all"
                 whileTap={{ scale: 0.95 }}
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -168,6 +170,7 @@ export default function Navigation() {
               {/* Mobile menu button */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 transition-all"
                 whileTap={{ scale: 0.95 }}
               >
