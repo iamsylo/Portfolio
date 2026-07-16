@@ -1,4 +1,4 @@
-# Creative Portfolio Website
+# Sylo's Creative Portfolio Website
 
 A modern, responsive portfolio website built with React, TypeScript, Tailwind CSS, and Framer Motion. This portfolio serves as both a resume and creative showcase for a computer science graduate with skills in development, photography, videography, and graphic design.
 
