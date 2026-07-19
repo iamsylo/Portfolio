@@ -13,54 +13,83 @@ export const personalInfo = {
 
 export const experiences: Experience[] = [
   {
-    id: "exp-1",
-    title: "Part-Time Data Entry Specialist",
-    company: "Private Client / Freelance",
-    location: "Remote",
-    duration: "Jul 2025 - Aug 2025",
-    startDate: "2025-07",
-    endDate: "2025-08",
-    description: "Maintained accurate and organized datasets through careful data cleaning and validation for private clients. Completed data entry tasks within required timelines while ensuring data accuracy and integrity.",
-    skills: ["Data Entry", "Data Cleaning", "Data Validation", "Excel", "Database Management", "Documentation"],
+    id: "exp-2", 
+    title: "Administrative Support",
+    company: "Ben-Lee Tailoring and Sportswear",
+    location: "Santa Maria, Ilocos Sur",
+    duration: "Nov 2025 - May 2026",
+    startDate: "2025-11",
+    endDate: "2026-05",
+    description: "Supported day-to-day operations by maintaining inventory records, digitizing order details, and assisting with basic IT needs across office and production equipment.",
+    skills: ["Inventory Management", "Data Entry", "Record Keeping", "Hardware Troubleshooting", "IT Support", "Office Administration"],
     achievements: [
-      "Maintained accurate and organized datasets through careful data cleaning and validation",
-      "Completed assigned data entry tasks within required timelines while maintaining accuracy", 
-      "Reduced errors by double-checking entries and following provided data standards",
-      "Performed basic data cleaning, including correcting inconsistencies and removing duplicate entries"
+      "Maintained inventory records across the production floor to help prevent stock shortages that could interrupt order fulfillment",
+      "Digitized player name and size records for 100+ customer orders, replacing manual logbooks and reducing order-entry errors",
+      "Provided basic IT support for office computers, including hardware troubleshooting, component repairs, and storage upgrades"
     ]
   },
-  {
-    id: "exp-2", 
-    title: "Freelance Developer – Educational Game Project",
-    company: "Freelance",
+    {
+    id: "exp-1",
+    title: "UI/UX Designer & Developer",
+    company: "TricyFair",
     location: "Remote",
-    duration: "Dec 2024 - Jan 2025",
-    startDate: "2024-12",
-    endDate: "2025-01",
-    description: "Designed and developed PILIpinas, an Android educational game using Flutter to raise awareness about West Philippine Sea territorial issues. Managed the full development lifecycle independently from concept to release.",
-    skills: ["Flutter", "Dart", "Android Development", "UI/UX Design", "Game Development", "Mobile Optimization"],
+    duration: "Feb 2026 - Mar 2026",
+    startDate: "2026-02",
+    endDate: "2026-03",
+    description: "Designed and built a responsive Flutter interface for fare estimation and route navigation, with a focus on simplifying the booking flow for riders and drivers.",
+    skills: ["Flutter", "UI/UX Design", "Mobile Development", "Wireframing", "Route Navigation", "Fare Estimation"],
     achievements: [
-      "Designed and developed an Android educational game using Flutter",
-      "Built interactive quizzes and facts with focus on UI/UX and responsiveness",
-      "Optimized mobile performance for smooth gameplay experience",
-      "Managed full development lifecycle independently from conceptualization to testing and release"
+      "Designed and built a responsive Flutter interface for real-time fare estimation and route navigation",
+      "Mapped and streamlined the driver-to-passenger flow from three legacy touchpoints into a single-screen booking interaction",
+      "Researched an OpenStreetMap-based routing integration projected to reduce map API costs by 40-60% versus a Google Maps-based approach"
     ]
   },
   {
     id: "exp-3",
-    title: "Intern/OJT - Web Developer",
+    title: "Data Entry Specialist",
+    company: "Private Client",
+    location: "Remote",
+    duration: "Jul 2025 - Aug 2025",
+    startDate: "2025-07",
+    endDate: "2025-08",
+    description: "Entered, validated, and cleaned administrative datasets while maintaining accuracy across high-volume record batches.",
+    skills: ["Data Entry", "Data Validation", "Database Cleaning", "Record Management", "Quality Control", "Documentation"],
+    achievements: [
+      "Entered, validated, and updated administrative datasets while maintaining accuracy across high-volume record batches",
+      "Cleaned database records by identifying and correcting syntax inconsistencies and removing duplicate entries",
+      "Reviewed records prior to submission to ensure compliance with client formatting and quality guidelines"
+    ]
+  },
+  {
+    id: "exp-4",
+    title: "Mobile App Developer - PILIpinas",
+    company: "Private Client",
+    location: "Remote",
+    duration: "Dec 2024 - Jan 2025",
+    startDate: "2024-12",
+    endDate: "2025-01",
+    description: "Conceived and independently developed PILIpinas, an Android educational game in Flutter built to raise awareness of West Philippine Sea territorial issues.",
+    skills: ["Flutter", "Dart", "Android Development", "UI/UX Design", "Game Development", "Mobile Optimization"],
+    achievements: [
+      "Conceived, designed, and independently developed PILIpinas as an Android educational game built in Flutter",
+      "Built interactive quizzes and informational modules optimized for mobile UI responsiveness and runtime performance",
+      "Owned the full project lifecycle solo, from concept and asset integration through debugging and final testing"
+    ]
+  },
+  {
+    id: "exp-5",
+    title: "IT Intern (OJT)",
     company: "University Information Office, University of Northern Philippines",
     location: "Vigan City, Ilocos Sur",
-    duration: "Jul 2024 - Aug 2024", 
+    duration: "Jul 2024 - Aug 2024",
     startDate: "2024-07",
     endDate: "2024-08",
-    description: "Performed data entry and audio-to-text transcription while developing a responsive website prototype for the University Information Office to enhance their online presence.",
-    skills: ["HTML", "CSS", "JavaScript","Firebase", "Data Entry", "Audio Transcription", "Web Development", "UI/UX Design"],
+    description: "Handled office documentation, built a responsive website prototype, and supported staff with application debugging and network checks.",
+    skills: ["Web Development", "Document Processing", "Troubleshooting", "Network Testing", "HTML", "CSS", "JavaScript"],
     achievements: [
-      "Performed data entry and audio-to-text transcription for office documentation",
-      "Designed and developed responsive website prototype for enhanced online presence",
-      "Created front-end layouts and interactive features using HTML, CSS, and JavaScript",
-      "Tested and debugged prototype to ensure functional, user-friendly interface ready for deployment"
+      "Transcribed and processed office documents to improve records management speed and entry accuracy",
+      "Programmed a responsive website prototype to modernize the office's digital presence",
+      "Supported staff with debugging local applications, running network tests, and preparing digital content for online publication"
     ]
   }
 ];
