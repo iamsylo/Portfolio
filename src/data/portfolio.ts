@@ -62,8 +62,8 @@ export const experiences: Experience[] = [
   },
   {
     id: "exp-4",
-    title: "Mobile App Developer - PILIpinas",
-    company: "Private Client",
+    title: "Mobile App Developer",
+    company: "PILIpinas",
     location: "Remote",
     duration: "Dec 2024 - Jan 2025",
     startDate: "2024-12",
