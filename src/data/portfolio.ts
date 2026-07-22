@@ -167,6 +167,20 @@ export const certificates: Certificate[] = [
     issuer: "Institute for Information & Communications Technology Planning & Evaluation (IITP), South Korea",
     issueDate: "2025-01",
     skills: ["Software Development", "Database Management", "IT Problem Solving"]
+  },
+  {
+    id: "cert-4",
+    title: "Microsoft Digital Literacy",
+    issuer: "TESDA",
+    issueDate: "2026-07",
+    skills: ["Digital Literacy", "Computer Fundamentals", "Productivity Tools"]
+  },
+  {
+    id: "cert-5",
+    title: "Installing and Configuring Computer Systems",
+    issuer: "TESDA",
+    issueDate: "2026-07",
+    skills: ["Computer Systems", "Hardware Installation", "System Configuration"]
   }
 ];
 
