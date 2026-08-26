@@ -28,13 +28,13 @@ export default function Hero() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16 items-center lg:items-start min-h-[100svh] pt-20 sm:pt-24 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-8 sm:gap-10 lg:gap-16 items-center lg:items-start min-h-[100svh] pt-10 sm:pt-16 pb-20">
           {/* Content - Left with diagonal background */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative py-8 sm:py-12 lg:py-0 lg:pr-4"
+            className="relative py-8 sm:py-12 lg:pt-[5vh] lg:pb-0 lg:pr-4"
           >
             <div className="space-y-2 lg:space-y-3 relative">
               <motion.div
@@ -58,7 +58,7 @@ export default function Hero() {
                   I’m
                 </p>
                 <motion.h1
-                  className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] font-semibold leading-[0.88] overflow-visible"
+                  className="text-5xl sm:text-7xl lg:text-8xl xl:text-[7rem] font-semibold leading-[0.88] overflow-visible"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
@@ -101,7 +101,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-3 pt-6 sm:pt-7"
+                className="flex flex-col sm:flex-row gap-3 pt-5 sm:pt-7"
               >
                 <a
                   href="/Resume.pdf"
@@ -152,7 +152,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center items-end lg:min-h-[100svh]"
+            className="relative flex justify-center items-end min-h-[26rem] sm:min-h-[34rem] lg:min-h-[88svh] lg:-translate-y-[5vh]"
           >
             <div className="absolute bottom-[7%] left-[8%] right-[8%] h-1 bg-[#b94b32]" />
 
@@ -164,7 +164,7 @@ export default function Hero() {
               className="relative z-10 w-full max-w-[34rem] lg:-mr-12 xl:-mr-24"
             >
               <div
-                className="relative w-full h-[54vh] sm:h-[64vh] lg:h-[76vh] min-h-[26rem] max-h-[48rem] flex items-end justify-center"
+                className="relative w-full h-[48vh] sm:h-[58vh] lg:h-[70vh] min-h-[24rem] sm:min-h-[28rem] max-h-[48rem] flex items-end justify-center"
               >
                 <img
                   src={personalInfo.avatar}
@@ -193,7 +193,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-5 sm:bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <button
             onClick={scrollToAbout}
