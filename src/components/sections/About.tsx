@@ -32,9 +32,9 @@ const SkillTag = ({ skill }: { skill: Skill }) => {
 
 export default function About() {
   const techStackGroups = [
-    { key: 'frontend', label: 'Frontend' },
-    { key: 'backend', label: 'Backend' },
-    { key: 'ai', label: 'AI / Machine Learning' }
+    { key: 'frontend', label: 'Frontend', description: 'Interfaces that feel clear, quick, and easy to use.' },
+    { key: 'backend', label: 'Backend', description: 'Reliable data flows and practical system foundations.' },
+    { key: 'ai', label: 'AI / Machine Learning', description: 'Experiments that turn data into useful decisions.' }
   ] as const;
 
   const skillCategories = {
@@ -43,6 +43,12 @@ export default function About() {
     tools: skills.filter(s => s.category === 'tools'),
     soft: skills.filter(s => s.category === 'soft')
   };
+
+  const skillCategoryDetails = {
+    design: { label: 'Design', description: 'Visual systems and content that make ideas easier to understand.' },
+    tools: { label: 'Tools', description: 'A dependable working setup for organized, collaborative delivery.' },
+    soft: { label: 'Soft Skills', description: 'Careful communication and problem solving from brief to handoff.' }
+  } as const;
 
   return (
     <section id="about" className="py-20 bg-[#e9e2d6] dark:bg-[#1c2922] relative overflow-hidden">
@@ -172,11 +178,15 @@ export default function About() {
               transition={{ duration: 0.4 }}
               className="space-y-8"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-black/10 dark:border-white/10 pb-5">
                 <div className="p-3 bg-[#315b4d] rounded-md">
                   <Code className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h3>
+                <div className="sm:mr-auto sm:ml-4">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#b94b32] font-semibold">Capabilities / 01</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h3>
+                </div>
+                <p className="max-w-sm text-sm text-gray-600 dark:text-gray-400">A practical toolkit for taking an idea from first sketch to working product.</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -196,10 +206,13 @@ export default function About() {
                       transition={{ duration: 0.4 }}
                       className="space-y-4 p-6 rounded-md bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 hover:shadow-lg transition-all"
                     >
-                      <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                      <div>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[#b94b32] rounded-full"></span>
                         {group.label}
-                      </p>
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{group.description}</p>
+                      </div>
                       <div className="flex flex-wrap gap-2">
                         {groupSkills.map((skill) => (
                           <SkillTag key={skill.name} skill={skill} />
@@ -223,15 +236,17 @@ export default function About() {
                 transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
                 className="space-y-4"
               >
-                <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <div>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <span className="p-2 bg-[#315b4d] rounded-md">
                     {React.createElement(skillIcons[category as keyof typeof skillIcons], {
                       className: "h-5 w-5 text-white"
                     })}
                   </span>
-                  {category === 'design' ? 'Design' :
-                   category === 'tools' ? 'Tools' : 'Soft Skills'}
-                </p>
+                  {skillCategoryDetails[category as keyof typeof skillCategoryDetails].label}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{skillCategoryDetails[category as keyof typeof skillCategoryDetails].description}</p>
+                </div>
                 <div className="p-6 rounded-md bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 hover:shadow-lg transition-all">
                   <div className="flex flex-wrap gap-2">
                     {skillCategories[category as keyof typeof skillCategories].map((skill) => (

@@ -49,7 +49,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative rounded-2xl overflow-hidden bg-gray-900 dark:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-200 cursor-pointer h-80"
+      className="group relative rounded-md overflow-hidden bg-gray-900 dark:bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-200 cursor-pointer h-96"
       style={{ perspective: '1200px', willChange: 'transform' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -81,13 +81,14 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             <div className="absolute inset-0 bg-black/45"></div>
           </div>
 
-          <div className="absolute inset-0 p-6 flex flex-col justify-between">
+          <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <div className="inline-flex">
-                <div className="bg-white/20 backdrop-blur-md p-3 rounded-full group-hover:bg-white/30 transition-all">
+                <div className="bg-[#1d2924]/75 p-3 rounded-md border border-white/20 group-hover:bg-[#b94b32] transition-all">
                   <Icon className="h-6 w-6 text-white" />
                 </div>
               </div>
+              <span className="text-xs uppercase tracking-[0.2em] text-white/80">0{index + 1}</span>
               {project.featured && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -102,7 +103,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
             <div className="space-y-3">
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-200 text-sm line-clamp-2">{project.description}</p>
+                <p className="text-gray-200 text-sm line-clamp-2 max-w-md">{project.description}</p>
               </div>
 
               <motion.div
@@ -199,7 +200,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-[#0f1419]">
+    <section id="projects" className="py-20 bg-[#f4f0e8] dark:bg-[#17211d]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -209,6 +210,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
+          <p className="text-xs uppercase tracking-[0.2em] text-[#b94b32] font-semibold mb-3">Selected work / 2024-26</p>
           <motion.h2 
             className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -219,7 +221,7 @@ export default function Projects() {
             Featured Works
           </motion.h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Showcasing projects that demonstrate my full-stack capabilities and creative solutions
+            Digital products built to solve practical problems, clarify complex ideas, and leave a useful impression.
           </p>
         </motion.div>
 
@@ -229,7 +231,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
+          className="flex flex-wrap justify-center gap-3 mb-12"
         >
           {categories.map((category, index) => {
             const Icon = category.icon;
@@ -267,7 +269,7 @@ export default function Projects() {
           >
             {/* All Projects Grid */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}

@@ -12,8 +12,9 @@ const CertificateCard = ({ certificate, index }: { certificate: Certificate, ind
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
-      className="card"
+      className="card relative overflow-hidden"
     >
+      <span className="absolute top-5 right-5 text-xs font-semibold tracking-[0.15em] text-[#b94b32]">0{index + 1}</span>
       {certificate.image && (
         <div className="mb-4">
           <img
@@ -25,7 +26,7 @@ const CertificateCard = ({ certificate, index }: { certificate: Certificate, ind
       )}
       
       <div className="space-y-3">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white">{certificate.title}</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white pr-8 leading-tight">{certificate.title}</h3>
         <p className="text-[#315b4d] dark:text-[#d6e2d9] font-medium">{certificate.issuer}</p>
         
         <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
@@ -74,7 +75,8 @@ export default function Certificates() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Certificates & Achievements</h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-[#b94b32] font-semibold mb-3">Proof of practice</p>
+          <h2 className="text-4xl sm:text-5xl font-semibold text-gray-900 dark:text-white mb-4">Certificates & Achievements</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             Professional certifications and achievements that showcase my commitment to continuous learning
           </p>

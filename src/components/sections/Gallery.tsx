@@ -152,11 +152,11 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3 }}
-      className="group cursor-pointer aspect-square"
+      className="group cursor-pointer"
       onClick={onClick}
     >
       <div
-        className="relative w-full h-full overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-200"
+        className="relative overflow-hidden rounded-md bg-[#e9e2d6] dark:bg-[#202c26] border border-black/10 dark:border-white/10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200"
       >
         {/* Skeleton loader */}
         {isLoading && <ImageSkeleton />}
@@ -172,7 +172,7 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
             decoding="async"
             onLoad={handleImageLoad}
             onError={handleImageError}
-            className={`w-full h-full object-cover transform-gpu will-change-transform group-hover:scale-110 transition-transform duration-500 ${
+            className={`w-full aspect-[4/3] object-cover transform-gpu will-change-transform group-hover:scale-105 transition-transform duration-500 ${
               isLoading ? 'opacity-0' : 'opacity-100'
             }`}
           />
@@ -180,12 +180,12 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
 
         {/* Error fallback */}
         {imageError && (
-          <div className="w-full h-full bg-[#e9e2d6] dark:bg-[#202c26] flex items-center justify-center">
+          <div className="w-full aspect-[4/3] bg-[#e9e2d6] dark:bg-[#202c26] flex items-center justify-center">
             <Camera className="h-8 w-8 text-gray-400" />
           </div>
         )}
         
-        {/* Overlay with gradient */}
+        {/* Quiet hover overlay for the image action */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-end justify-start p-6">
           <div className="w-full">
             <h3 className="font-bold text-white text-lg mb-1">{item.title}</h3>
@@ -202,6 +202,14 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
               <Play className="h-8 w-8 text-white" />
             )}
           </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 px-4 py-3">
+          <div>
+            <h3 className="text-base font-semibold text-[#1d2924] dark:text-[#f4f0e8]">{item.title}</h3>
+            <p className="text-xs uppercase tracking-[0.16em] text-[#b94b32] mt-1">{item.category}</p>
+          </div>
+          <span className="text-xs text-[#68736b] dark:text-[#b8c1b8]">View</span>
         </div>
       </div>
     </motion.div>
@@ -235,7 +243,7 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-16"
+            className="text-left mb-12 max-w-2xl"
           >
             <motion.h2 
               className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"

@@ -28,7 +28,7 @@ export default function Hero() {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16 items-center min-h-[100svh] pt-24 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16 items-center lg:items-start min-h-[100svh] pt-20 sm:pt-24 pb-20">
           {/* Content - Left with diagonal background */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -101,7 +101,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex flex-col sm:flex-row gap-3 pt-2 sm:pt-3"
+                className="flex flex-col sm:flex-row gap-3 pt-6 sm:pt-7"
               >
                 <a
                   href="/Resume.pdf"
