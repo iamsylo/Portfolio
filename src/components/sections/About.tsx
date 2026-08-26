@@ -23,7 +23,7 @@ const SkillTag = ({ skill }: { skill: Skill }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="inline-block px-4 py-2 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 dark:from-cyan-500/30 dark:to-purple-500/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-semibold border border-cyan-300/50 dark:border-cyan-500/30 hover:border-cyan-500 dark:hover:border-cyan-400 hover:scale-105 hover:-translate-y-1 transition-all duration-200 backdrop-blur-sm"
+      className="inline-block px-4 py-2 bg-[#e9e2d6] dark:bg-white/10 text-[#315b4d] dark:text-[#d6e2d9] rounded-md text-sm font-semibold border border-black/10 dark:border-white/10 hover:border-[#b94b32] hover:scale-105 hover:-translate-y-1 transition-all duration-200"
     >
       {skill.name}
     </motion.div>
@@ -45,11 +45,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#0f1419] dark:via-[#1a1f2e] dark:to-[#0f1419] relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute -top-40 right-0 w-80 h-80 bg-cyan-300/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-40 left-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
-
+    <section id="about" className="py-20 bg-[#e9e2d6] dark:bg-[#1c2922] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -60,7 +56,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -90,12 +86,8 @@ export default function About() {
               className="absolute inset-0 opacity-30 pointer-events-none"
             >
               <svg className="w-96 h-96" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="200" r="180" stroke="url(#grad)" strokeWidth="2" strokeDasharray="10 5"/>
+                <circle cx="200" cy="200" r="180" stroke="#b94b32" strokeWidth="2" strokeDasharray="10 5"/>
                 <defs>
-                  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#06b6d4"/>
-                    <stop offset="100%" stopColor="#a855f7"/>
-                  </linearGradient>
                 </defs>
               </svg>
             </motion.div>
@@ -120,14 +112,13 @@ export default function About() {
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/30 via-transparent to-purple-600/30"></div>
               </motion.div>
 
               {/* Floating badge */}
               <motion.div
                 animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="absolute hidden sm:flex -bottom-6 -right-6 bg-gradient-to-br from-cyan-500/80 to-purple-600/80 dark:from-cyan-500 dark:to-purple-600 p-6 rounded-2xl shadow-2xl glass-effect border border-cyan-300/50 dark:border-cyan-500/30"
+                className="absolute hidden sm:flex -bottom-6 -right-6 bg-[#b94b32] p-6 rounded-md shadow-lg border border-[#963b27]"
               >
                 <div className="text-2xl font-black text-gray-900 dark:text-white">Sylo</div>
               </motion.div>
@@ -147,9 +138,9 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full w-fit"
+              className="inline-flex items-center gap-2 bg-[#f4f0e8] dark:bg-white/10 border border-black/10 dark:border-white/10 px-4 py-2 rounded-md w-fit"
             >
-              <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
+              <span className="w-2 h-2 bg-[#b94b32] rounded-full"></span>
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Who I am</span>
             </motion.div>
 
@@ -182,7 +173,7 @@ export default function About() {
               className="space-y-8"
             >
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                <div className="p-3 bg-[#315b4d] rounded-md">
                   <Code className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h3>
@@ -203,10 +194,10 @@ export default function About() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.4 }}
-                      className="space-y-4 p-6 rounded-2xl glass-effect hover:shadow-lg transition-all"
+                      className="space-y-4 p-6 rounded-md bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 hover:shadow-lg transition-all"
                     >
                       <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"></span>
+                        <span className="w-1.5 h-1.5 bg-[#b94b32] rounded-full"></span>
                         {group.label}
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -233,7 +224,7 @@ export default function About() {
                 className="space-y-4"
               >
                 <p className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                  <span className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                  <span className="p-2 bg-[#315b4d] rounded-md">
                     {React.createElement(skillIcons[category as keyof typeof skillIcons], {
                       className: "h-5 w-5 text-white"
                     })}
@@ -241,7 +232,7 @@ export default function About() {
                   {category === 'design' ? 'Design' :
                    category === 'tools' ? 'Tools' : 'Soft Skills'}
                 </p>
-                <div className="p-6 rounded-2xl glass-effect hover:shadow-lg transition-all">
+                <div className="p-6 rounded-md bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 hover:shadow-lg transition-all">
                   <div className="flex flex-wrap gap-2">
                     {skillCategories[category as keyof typeof skillCategories].map((skill) => (
                       <SkillTag key={skill.name} skill={skill} />

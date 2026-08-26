@@ -23,7 +23,7 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
           whileInView={{ scaleY: 1 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1 + 0.2, duration: 0.6 }}
-          className="absolute top-16 bottom-0 w-1 bg-gradient-to-b from-cyan-500 via-purple-500 to-transparent origin-top"
+          className="absolute top-16 bottom-0 w-px bg-[#b94b32]/40 origin-top"
         />
         
         {/* Dot */}
@@ -32,7 +32,7 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 300 }}
-          className="relative z-10 w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-500/100 transition-shadow duration-300"
+          className="relative z-10 w-12 h-12 bg-[#315b4d] rounded-full flex items-center justify-center shadow-md shadow-[#315b4d]/20 group-hover:bg-[#b94b32] transition-colors duration-300"
         >
           <Briefcase className="h-6 w-6 text-white" />
         </motion.div>
@@ -43,19 +43,19 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
         onClick={() => setIsExpanded(!isExpanded)}
         className="md:ml-24 cursor-pointer hover:translate-y-[-2px] transition-transform duration-200"
       >
-        <div className={`rounded-2xl transition-all duration-200 overflow-hidden glass-effect 
-          ${isExpanded ? 'ring-2 ring-cyan-500 shadow-xl shadow-cyan-500/20' : 'hover:shadow-lg'}`}
+        <div className={`rounded-md transition-all duration-200 overflow-hidden bg-[#f8f5ef] dark:bg-[#202c26] border border-black/10 dark:border-white/10
+          ${isExpanded ? 'ring-2 ring-[#b94b32] shadow-xl shadow-[#b94b32]/10' : 'hover:shadow-lg'}`}
         >
           {/* Header */}
-          <div className="p-6 sm:p-8 bg-gradient-to-r from-cyan-500/10 to-purple-500/10">
+          <div className="p-6 sm:p-8 bg-[#f4f0e8] dark:bg-[#202c26] border-b border-black/10 dark:border-white/10">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                   {experience.title}
                 </h3>
                 <div className="flex flex-wrap items-center gap-3 text-sm">
-                  <span className="flex items-center gap-1 font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                    <Briefcase className="h-4 w-4 text-cyan-600" />
+                  <span className="flex items-center gap-1 font-semibold text-[#b94b32] dark:text-[#e37d62]">
+                    <Briefcase className="h-4 w-4 text-[#b94b32]" />
                     {experience.company}
                   </span>
                   <span className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
@@ -84,7 +84,7 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
           <div
             className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'opacity-100 max-h-[2000px]' : 'opacity-0 max-h-0'}`}
           >
-            <div className="px-6 sm:px-8 pb-6 sm:pb-8 border-t border-white/10 space-y-6">
+            <div className="px-6 sm:px-8 pb-6 sm:pb-8 border-t border-black/10 dark:border-white/10 space-y-6">
               {/* Description */}
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {experience.description}
@@ -93,14 +93,14 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
               {/* Skills */}
               <div className="space-y-3">
                 <h4 className="font-semibold text-gray-800 dark:text-white flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"></span>
+                  <span className="w-1.5 h-1.5 bg-[#b94b32] rounded-full"></span>
                   Technologies Used
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {experience.skills.map((skill: string) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 text-cyan-700 dark:text-cyan-300 text-sm rounded-full border border-cyan-300/50 dark:border-cyan-500/30 font-medium"
+                      className="px-3 py-1.5 bg-[#e9e2d6] dark:bg-white/10 text-[#315b4d] dark:text-[#d6e2d9] text-sm rounded-md border border-black/10 dark:border-white/10 font-medium"
                     >
                       {skill}
                     </span>
@@ -120,7 +120,7 @@ const ExperienceCard = ({ experience, index }: { experience: Experience, index: 
                       key={achievementIndex}
                       className="text-gray-700 dark:text-gray-300 flex items-start gap-3"
                     >
-                      <CheckCircle2 className="h-5 w-5 text-cyan-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-[#b94b32] flex-shrink-0 mt-0.5" />
                       <span>{achievement}</span>
                     </li>
                   ))}
@@ -138,7 +138,7 @@ import React from 'react';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-[#0f1419]">
+    <section id="experience" className="py-20 bg-[#f4f0e8] dark:bg-[#17211d]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -149,7 +149,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

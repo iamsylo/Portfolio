@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail, Facebook, Instagram } from 'lucide-react';
 import { personalInfo } from '../../data/portfolio';
 
-const heroAvatarSrcSet = [
-  '/optimized/hero-avatar-480.webp 480w',
-  '/optimized/hero-avatar-720.webp 720w',
-  '/optimized/hero-avatar-960.webp 960w'
-].join(', ');
+const capabilities = personalInfo.subtitle.split(' | ');
 
 export default function Hero() {
   const scrollToAbout = () => {
@@ -18,71 +14,37 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-[#020617]">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient orb 1 */}
+    <section id="home" className="min-h-[100svh] flex items-center justify-center relative overflow-hidden bg-[#f4f0e8] text-[#1d2924] dark:bg-[#17211d] dark:text-[#f4f0e8]">
+      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-[#315b4d]" />
+      <div className="absolute left-0 right-0 top-[18%] overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-3xl opacity-20"
-        />
-        {/* Gradient orb 2 */}
-        <motion.div
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full blur-3xl opacity-20"
-        />
-        {/* Gradient orb 3 */}
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-bl from-teal-400 to-cyan-500 rounded-full blur-3xl opacity-15"
-        />
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+          className="flex w-max whitespace-nowrap text-[18vw] font-semibold leading-none text-[#315b4d]/[.08] dark:text-[#f4f0e8]/[.04]"
+        >
+          <span className="pr-[8vw]">PAGATPATAN</span>
+          <span className="pr-[8vw]">PAGATPATAN</span>
+        </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16 items-center min-h-[100svh] pt-24 pb-20">
           {/* Content - Left with diagonal background */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative py-8 sm:py-12 lg:py-0"
+            className="relative py-8 sm:py-12 lg:py-0 lg:pr-4"
           >
-            {/* Decorative background shape */}
-            <div className="absolute -inset-8 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-3xl -z-1 hidden lg:block" 
-              style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)' }}
-            />
-            
             <div className="space-y-2 lg:space-y-3 relative">
-              {/* Label */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-[#b94b32] font-semibold"
               >
+                <span className="h-px w-10 bg-[#b94b32]" />
+                Digital maker / Ilocos Sur
               </motion.div>
 
               {/* Main heading */}
@@ -92,17 +54,17 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="space-y-2 sm:space-y-3"
               >
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium">
-                  Hi there! I'm
+                <p className="text-sm sm:text-base text-[#68736b] dark:text-[#b8c1b8] font-medium">
+                  I’m
                 </p>
                 <motion.h1
-                  className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight sm:leading-relaxed overflow-visible"
+                  className="text-6xl sm:text-7xl lg:text-8xl xl:text-[7rem] font-semibold leading-[0.88] overflow-visible"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
                 >
-                  <span className="block text-gray-900 dark:text-white">{personalInfo.name.split(' ').slice(0, 2).join(' ')}</span>
-                  <span className="block bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 bg-clip-text text-transparent pb-1 sm:pb-3">
+                  <span className="block whitespace-nowrap text-[#1d2924] dark:text-[#f4f0e8]">{personalInfo.name.split(' ').slice(0, 2).join(' ')}</span>
+                  <span className="block text-[#b94b32] pb-1 sm:pb-3">
                     {personalInfo.name.split(' ').slice(2).join(' ')}
                   </span>
                 </motion.h1>
@@ -113,14 +75,25 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="space-y-2 sm:space-y-3 -mt-1 sm:-mt-2"
+                className="space-y-3 sm:space-y-4 mt-3 sm:mt-5"
               >
-                <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 dark:text-gray-200">
+                <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium text-[#315b4d] dark:text-[#d6e2d9] max-w-xl">
                   {personalInfo.title}
                 </h2>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
-                  {personalInfo.subtitle}
-                </p>
+                <div className="overflow-hidden max-w-xl bg-[#f4f0e8]/90 dark:bg-[#17211d]/70 border-y border-[#315b4d]/30 dark:border-[#f4f0e8]/20 py-2.5">
+                  <motion.div
+                    animate={{ x: ['0%', '-50%'] }}
+                    transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+                    className="flex w-max whitespace-nowrap text-[10px] uppercase tracking-[0.15em] font-semibold text-[#1d2924] dark:text-[#d6e2d9]"
+                  >
+                    {[...capabilities, ...capabilities].map((capability, index) => (
+                      <span key={`${capability}-${index}`} className="flex items-center mr-6">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#b94b32] mr-2" />
+                        {capability}
+                      </span>
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
 
               {/* CTA Buttons */}
@@ -140,7 +113,7 @@ export default function Hero() {
                 </a>
                 <button
                   onClick={scrollToAbout}
-                  className="btn-secondary flex items-center justify-center gap-2 text-base hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                  className="btn-secondary text-[#1d2924] dark:text-[#d6e2d9] border-[#315b4d] dark:border-[#9bb6a5] flex items-center justify-center gap-2 text-base hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                 >
                   Learn More
                   <ChevronDown className="h-5 w-5 group-hover:animate-bounce" />
@@ -152,7 +125,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="flex gap-3 sm:gap-4 pt-2 sm:pt-3"
+                className="flex gap-3 sm:gap-4 pt-3 sm:pt-5"
               >
                 {[
                   { Icon: Github, url: 'https://github.com/iamsylo', label: 'GitHub' },
@@ -165,72 +138,55 @@ export default function Hero() {
                     key={label}
                     href={url}
                     aria-label={label}
-                    className="p-2 sm:p-3 glass-effect rounded-full hover:bg-gradient-to-br hover:from-cyan-400/20 hover:to-purple-400/20 hover:scale-110 hover:-translate-y-1 active:scale-90 transition-all duration-200"
+                    className="p-2 sm:p-3 bg-[#e9e2d6] dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-full hover:bg-[#b94b32] hover:border-[#b94b32] hover:scale-110 hover:-translate-y-1 active:scale-90 transition-all duration-200"
                   >
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-700 dark:text-gray-300" />
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-[#315b4d] dark:text-[#d6e2d9]" />
                   </a>
                 ))}
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Image - Right side with floating effect */}
+          {/* Transparent portrait stage */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center items-center"
+            className="relative flex justify-center items-end lg:min-h-[100svh]"
           >
-            {/* Floating background shapes */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 opacity-20"
-            >
-              <svg className="w-full h-full" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="200" r="150" stroke="url(#grad1)" strokeWidth="2"/>
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#06b6d4"/>
-                    <stop offset="100%" stopColor="#a855f7"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </motion.div>
+            <div className="absolute bottom-[7%] left-[8%] right-[8%] h-1 bg-[#b94b32]" />
 
-            {/* Image container */}
             <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
+              className="relative z-10 w-full max-w-[34rem] lg:-mr-12 xl:-mr-24"
             >
               <div
-                className="relative w-64 sm:w-72 md:w-80 h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 hover:rotate-2 transition-all duration-300"
+                className="relative w-full h-[54vh] sm:h-[64vh] lg:h-[76vh] min-h-[26rem] max-h-[48rem] flex items-end justify-center"
               >
                 <img
                   src={personalInfo.avatar}
-                  srcSet={heroAvatarSrcSet}
-                  sizes="(max-width: 1024px) 80vw, 384px"
                   alt="Hero"
                   width={960}
                   height={960}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain object-bottom grayscale-[15%] brightness-[.98] transition-transform duration-1000 hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-cyan-600/20 via-transparent to-transparent"></div>
               </div>
 
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, 10, 0], rotate: [0, 5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -right-4 bg-gradient-to-br from-cyan-500/80 to-purple-600/80 dark:from-cyan-500 dark:to-purple-600 p-4 rounded-2xl shadow-2xl glass-effect border border-cyan-300/50 dark:border-cyan-500/30"
-              >
-                <div className="text-sm font-bold text-gray-900 dark:text-white">Developer</div>
-              </motion.div>
+              <div className="absolute bottom-1 left-5 bg-[#1d2924]/85 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-[#f4f0e8]">
+                Christian Joseph / Creative Developer
+              </div>
             </motion.div>
           </motion.div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 hidden sm:flex items-center justify-between border-t border-[#1d2924]/15 dark:border-[#f4f0e8]/20 py-4 text-[10px] uppercase tracking-[0.22em] text-[#68736b] dark:text-[#b8c1b8]">
+          <span>Based in Ilocos Sur, Philippines</span>
+          <span>Available for thoughtful digital work</span>
         </div>
 
         {/* Scroll indicator */}
@@ -241,7 +197,7 @@ export default function Hero() {
         >
           <button
             onClick={scrollToAbout}
-            className="flex flex-col items-center gap-2 text-gray-700 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+            className="flex flex-col items-center gap-2 text-[#b8c1b8] hover:text-[#e37d62] transition-colors"
           >
             <span className="text-sm font-semibold hidden sm:block">Scroll to explore</span>
             <motion.div

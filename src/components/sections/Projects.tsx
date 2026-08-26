@@ -78,7 +78,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
               className="w-full h-full object-cover transition-transform duration-300"
               style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-black/45"></div>
           </div>
 
           <div className="absolute inset-0 p-6 flex flex-col justify-between">
@@ -92,7 +92,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold"
+                  className="bg-[#b94b32] text-white text-xs px-3 py-1 rounded-md font-semibold"
                 >
                   Featured
                 </motion.div>
@@ -121,10 +121,10 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
           className="absolute inset-0"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <div className="h-full w-full p-6 bg-gradient-to-br from-gray-900/95 via-gray-900/90 to-gray-800/95 text-white">
+          <div className="h-full w-full p-6 bg-[#1d2924] text-[#f4f0e8]">
             <div className="flex flex-col h-full gap-4">
               <div>
-                <p className="text-xs uppercase tracking-wide text-cyan-300">{project.category}</p>
+                <p className="text-xs uppercase tracking-wide text-[#e37d62]">{project.category}</p>
                 <h3 className="text-2xl font-bold">{project.title}</h3>
               </div>
 
@@ -161,7 +161,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-lg transition-all"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#b94b32] hover:bg-[#963b27] text-white rounded-md transition-all"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -210,7 +210,7 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -239,8 +239,8 @@ export default function Projects() {
                 onClick={() => filterProjects(category.value)}
                 className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold transition-all ${
                   selectedCategory === category.value
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/50'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20'
+                    ? 'bg-[#315b4d] text-white shadow-lg shadow-[#315b4d]/20'
+                    : 'bg-[#e9e2d6] dark:bg-white/10 text-[#315b4d] dark:text-gray-300 hover:bg-[#b94b32] hover:text-white'
                 }`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -303,8 +303,8 @@ export default function Projects() {
           className="text-center mt-20"
         >
           <div className="flex flex-col items-center gap-6">
-            <div className="inline-flex items-center gap-3 glass-effect px-6 py-3 rounded-full">
-              <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+            <div className="inline-flex items-center gap-3 bg-[#e9e2d6] dark:bg-white/10 border border-black/10 dark:border-white/10 px-6 py-3 rounded-md">
+              <span className="w-2 h-2 bg-[#b94b32] rounded-full animate-pulse"></span>
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Want to collaborate?
               </span>

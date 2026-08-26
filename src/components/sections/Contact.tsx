@@ -19,11 +19,7 @@ const socialIcons = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#0f1419] dark:via-[#1a1f2e] dark:to-[#0f1419] relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute -top-40 right-20 w-80 h-80 bg-cyan-300/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-40 left-20 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
-
+    <section id="contact" className="py-20 bg-[#e9e2d6] dark:bg-[#1c2922] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -34,7 +30,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+            className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -57,7 +53,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-4">
+              <h3 className="text-3xl font-semibold text-[#315b4d] dark:text-[#d6e2d9] mb-4">
                 Get in Touch
               </h3>
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
@@ -72,16 +68,16 @@ export default function Contact() {
                 href={`mailto:${contactInfo.email}`}
                 whileHover={{ x: 8, y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex items-center gap-4 p-5 glass-effect rounded-2xl hover:shadow-lg transition-all group"
+                className="flex items-center gap-4 p-5 bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 rounded-md hover:shadow-lg transition-all group"
               >
-                <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all">
+                <div className="p-3 bg-[#315b4d] rounded-md group-hover:bg-[#b94b32] transition-colors">
                   <Mail className="h-6 w-6 text-white" />
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold text-gray-900 dark:text-white text-sm">Email Me</p>
-                  <p className="text-cyan-600 dark:text-cyan-400 font-medium">{contactInfo.email}</p>
+                  <p className="text-[#315b4d] dark:text-[#d6e2d9] font-medium">{contactInfo.email}</p>
                 </div>
-                <span className="text-gray-400 group-hover:text-cyan-500 transition-colors">→</span>
+                <span className="text-gray-400 group-hover:text-[#b94b32] transition-colors">→</span>
               </motion.a>
 
               {contactInfo.phone && (
@@ -89,25 +85,25 @@ export default function Contact() {
                   href={`tel:${contactInfo.phone}`}
                   whileHover={{ x: 8, y: -2 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex items-center gap-4 p-5 glass-effect rounded-2xl hover:shadow-lg transition-all group"
+                  className="flex items-center gap-4 p-5 bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 rounded-md hover:shadow-lg transition-all group"
                 >
-                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all">
+                  <div className="p-3 bg-[#b94b32] rounded-md group-hover:bg-[#963b27] transition-colors">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
                     <p className="font-semibold text-gray-900 dark:text-white text-sm">Call Me</p>
-                    <p className="text-purple-600 dark:text-purple-400 font-medium">{contactInfo.phone}</p>
+                    <p className="text-[#b94b32] dark:text-[#e37d62] font-medium">{contactInfo.phone}</p>
                   </div>
-                  <span className="text-gray-400 group-hover:text-purple-500 transition-colors">→</span>
+                  <span className="text-gray-400 group-hover:text-[#b94b32] transition-colors">→</span>
                 </motion.a>
               )}
 
               <motion.div
                 whileHover={{ x: 8, y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex items-center gap-4 p-5 glass-effect rounded-2xl group"
+                className="flex items-center gap-4 p-5 bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 rounded-md group"
               >
-                <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl">
+                <div className="p-3 bg-[#8c6a3f] rounded-md">
                   <MapPin className="h-6 w-6 text-white" />
                 </div>
                 <div className="flex-1">
@@ -120,7 +116,7 @@ export default function Contact() {
             {/* Social Links */}
             <div>
               <h4 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"></span>
+                <span className="w-1.5 h-1.5 bg-[#b94b32] rounded-full"></span>
                 Connect With Me
               </h4>
               <div className="flex gap-3 flex-wrap">
@@ -132,7 +128,7 @@ export default function Contact() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-4 glass-effect rounded-xl hover:shadow-lg hover:shadow-cyan-500/20 transition-all group"
+                      className="p-4 bg-[#f4f0e8] dark:bg-[#202c26] border border-black/10 dark:border-white/10 rounded-md hover:shadow-lg transition-all group"
                       whileHover={{ scale: 1.15, y: -5 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -141,7 +137,7 @@ export default function Contact() {
                       transition={{ delay: index * 0.08, type: "spring", stiffness: 300 }}
                       title={link.platform}
                     >
-                      <Icon className="h-6 w-6 text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors" />
+                      <Icon className="h-6 w-6 text-gray-700 dark:text-gray-300 group-hover:text-[#b94b32] transition-colors" />
                     </motion.a>
                   );
                 })}

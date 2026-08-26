@@ -64,8 +64,8 @@ export default function Navigation() {
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/90 dark:bg-[#0f1419]/90 backdrop-blur-xl shadow-lg shadow-cyan-500/10'
-            : 'bg-white/50 dark:bg-[#0f1419]/50 backdrop-blur-lg'
+            ? 'bg-[#f4f0e8]/95 dark:bg-[#17211d]/95 border-b border-black/10 dark:border-white/10'
+            : 'bg-[#f4f0e8]/80 dark:bg-[#17211d]/80 border-b border-black/5 dark:border-white/5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +79,7 @@ export default function Navigation() {
               <div
                 role="img"
                 aria-label="Logo"
-                className="h-20 w-20 sm:h-24 sm:w-24 bg-gradient-to-r from-cyan-500 to-blue-600"
+                className="h-20 w-20 sm:h-24 sm:w-24 bg-[#b94b32]"
                 style={{
                   WebkitMaskImage: "url('/sylo.svg')",
                   maskImage: "url('/sylo.svg')",
@@ -109,20 +109,20 @@ export default function Navigation() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <div className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${
+                      <div className={`px-3 py-2 rounded-md transition-all duration-300 flex items-center gap-2 ${
                         isActive
-                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20'
-                          : 'hover:bg-white/50 dark:hover:bg-white/10'
+                          ? 'bg-[#e9e2d6] dark:bg-white/10'
+                          : 'hover:bg-[#e9e2d6] dark:hover:bg-white/10'
                       }`}>
                         <Icon className={`h-4 w-4 transition-colors ${
                           isActive 
-                            ? 'text-cyan-600' 
-                            : 'text-gray-700 dark:text-gray-300 group-hover:text-cyan-600'
+                            ? 'text-[#b94b32]' 
+                            : 'text-[#68736b] dark:text-gray-300 group-hover:text-[#b94b32]'
                         }`} />
                         <span className={`text-sm font-semibold transition-colors ${
                           isActive
-                            ? 'text-cyan-600 dark:text-cyan-400'
-                            : 'text-gray-700 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400'
+                            ? 'text-[#b94b32] dark:text-[#e37d62]'
+                            : 'text-[#3e4a43] dark:text-gray-300 group-hover:text-[#b94b32] dark:group-hover:text-[#e37d62]'
                         }`}>
                           {item.name}
                         </span>
@@ -132,7 +132,7 @@ export default function Navigation() {
                       {isActive && (
                         <motion.div
                           layoutId="navUnderline"
-                          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full"
+                          className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#b94b32]"
                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         />
                       )}
@@ -204,7 +204,7 @@ export default function Navigation() {
                       onClick={() => scrollToSection(item.href)}
                       className={`w-full flex items-center px-4 py-3 rounded-lg font-semibold transition-all ${
                         isActive
-                          ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-600 dark:text-cyan-400'
+                          ? 'bg-[#e9e2d6] dark:bg-white/10 text-[#b94b32] dark:text-[#e37d62]'
                           : 'text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/10 hover:text-cyan-600 dark:hover:text-cyan-400'
                       }`}
                       whileHover={{ x: 5 }}
@@ -223,7 +223,7 @@ export default function Navigation() {
 
       {/* Animated scroll progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 z-50"
+        className="fixed top-0 left-0 right-0 h-0.5 bg-[#b94b32] z-50"
         style={{
           scaleX: scrolled ? 1 : 0,
           transformOrigin: '0%'

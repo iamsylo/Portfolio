@@ -1,21 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --paper: #f4f0e8;
+    --paper-deep: #e9e2d6;
+    --ink: #1d2924;
+    --muted: #68736b;
+    --rust: #b94b32;
+    --moss: #315b4d;
+    --line: rgba(29, 41, 36, 0.16);
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    font-family: 'Inter', sans-serif;
-    @apply bg-white dark:bg-[#020617];
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    @apply dark:bg-[#17211d] dark:text-[#f4f0e8];
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fraunces', serif;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: var(--rust);
+    color: var(--paper);
   }
 
   /* Performance optimizations */
@@ -26,22 +44,22 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40;
+    @apply bg-[#b94b32] hover:bg-[#963b27] text-[#f4f0e8] px-6 py-3 rounded-md transition-all duration-200 font-medium shadow-none;
     will-change: transform;
   }
   
   .btn-secondary {
-    @apply bg-transparent hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 text-cyan-600 dark:text-cyan-400 border-2 border-cyan-500 dark:border-cyan-400 px-6 py-3 rounded-lg transition-all duration-200 font-medium;
+    @apply bg-transparent hover:bg-[#e9e2d6] dark:hover:bg-white/10 text-[#315b4d] dark:text-[#d6e2d9] border border-[#315b4d] dark:border-[#9bb6a5] px-6 py-3 rounded-md transition-all duration-200 font-medium;
     will-change: transform;
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800/90 rounded-xl shadow-lg dark:shadow-gray-900/50 hover:shadow-xl dark:hover:shadow-gray-900/70 transition-shadow duration-300 p-6;
+    @apply bg-[#f8f5ef] dark:bg-[#202c26] border border-black/10 dark:border-white/10 rounded-md shadow-none hover:shadow-lg hover:shadow-black/5 transition-shadow duration-300 p-6;
     will-change: box-shadow;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-teal-50 via-white to-cyan-50 dark:from-[#020617] dark:via-[#1E293B] dark:to-[#020617];
+    @apply bg-[#e9e2d6] dark:bg-[#1c2922];
   }
 }
 

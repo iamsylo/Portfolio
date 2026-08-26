@@ -41,7 +41,7 @@ const responsiveGalleryImages: Record<string, { srcSet: string; sizes: string }>
 
 // Skeleton loader component
 const ImageSkeleton = () => (
-  <div className="w-full h-full bg-gradient-to-r from-gray-200 dark:from-gray-700 via-gray-100 dark:via-gray-600 to-gray-200 dark:to-gray-700 animate-pulse rounded-lg" />
+  <div className="w-full h-full bg-[#e9e2d6] dark:bg-[#202c26] animate-pulse rounded-lg" />
 );
 
 const MediaModal = ({ item, isOpen, onClose }: { item: MediaItem | null, isOpen: boolean, onClose: () => void }) => {
@@ -180,13 +180,13 @@ const MediaCard = ({ item, onClick }: { item: MediaItem, onClick: () => void }) 
 
         {/* Error fallback */}
         {imageError && (
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+          <div className="w-full h-full bg-[#e9e2d6] dark:bg-[#202c26] flex items-center justify-center">
             <Camera className="h-8 w-8 text-gray-400" />
           </div>
         )}
         
         {/* Overlay with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-end justify-start p-6">
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-end justify-start p-6">
           <div className="w-full">
             <h3 className="font-bold text-white text-lg mb-1">{item.title}</h3>
             <p className="text-gray-300 text-sm opacity-75">{item.category}</p>
@@ -227,10 +227,7 @@ export default function Gallery() {
 
   return (
     <>
-      <section id="gallery" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#0f1419] dark:via-[#1a1f2e] dark:to-[#0f1419] relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute -top-40 right-20 w-80 h-80 bg-cyan-300/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-40 left-20 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
+      <section id="gallery" className="py-20 bg-[#f4f0e8] dark:bg-[#17211d] relative overflow-hidden">
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
@@ -241,7 +238,7 @@ export default function Gallery() {
             className="text-center mb-16"
           >
             <motion.h2 
-              className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent mb-4"
+              className="text-5xl sm:text-6xl font-semibold text-[#1d2924] dark:text-[#f4f0e8] mb-4"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -292,8 +289,8 @@ export default function Gallery() {
             className="text-center mt-20"
           >
             <div className="flex flex-col items-center gap-6">
-              <div className="inline-flex items-center gap-3 glass-effect px-6 py-3 rounded-full">
-                <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
+              <div className="inline-flex items-center gap-3 bg-[#e9e2d6] dark:bg-white/10 border border-black/10 dark:border-white/10 px-6 py-3 rounded-md">
+                <span className="w-2 h-2 bg-[#b94b32] rounded-full animate-pulse"></span>
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Like what you see?
                 </span>

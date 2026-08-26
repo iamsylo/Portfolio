@@ -14,7 +14,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0f1419] text-white border-t border-purple-900/30">
+    <footer className="bg-[#1d2924] text-[#f4f0e8] border-t border-[#b94b32]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <button
                     onClick={() => document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-gray-400 hover:text-primary-400 transition-colors text-sm"
+                    className="text-[#b8c1b8] hover:text-[#e37d62] transition-colors text-sm"
                   >
                     {link.name}
                   </button>
@@ -76,14 +76,14 @@ export default function Footer() {
             <div className="space-y-2">
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="text-gray-400 hover:text-primary-400 transition-colors text-sm block"
+                className="text-[#b8c1b8] hover:text-[#e37d62] transition-colors text-sm block"
               >
                 {contactInfo.email}
               </a>
               {contactInfo.phone && (
                 <a
                   href={`tel:${contactInfo.phone}`}
-                  className="text-gray-400 hover:text-primary-400 transition-colors text-sm block"
+                  className="text-[#b8c1b8] hover:text-[#e37d62] transition-colors text-sm block"
                 >
                   {contactInfo.phone}
                 </a>
@@ -98,7 +98,7 @@ export default function Footer() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary-400 transition-colors"
+                  className="text-[#b8c1b8] hover:text-[#e37d62] transition-colors"
                   whileHover={{ scale: 1.2, y: -2 }}
                 >
                   <span className="sr-only">{social.platform}</span>
@@ -123,7 +123,7 @@ export default function Footer() {
             
             <motion.button
               onClick={scrollToTop}
-              className="mt-4 sm:mt-0 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white p-2 rounded-full transition-colors shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40"
+              className="mt-4 sm:mt-0 bg-[#b94b32] hover:bg-[#963b27] text-white p-2 rounded-full transition-colors"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0 }}
