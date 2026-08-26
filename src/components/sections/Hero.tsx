@@ -113,7 +113,7 @@ export default function Hero() {
                 </a>
                 <button
                   onClick={scrollToAbout}
-                  className="btn-secondary text-[#1d2924] dark:text-[#d6e2d9] border-[#315b4d] dark:border-[#9bb6a5] flex items-center justify-center gap-2 text-base hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                  className="btn-secondary bg-[#f4f0e8] text-[#1d2924] border-2 border-[#315b4d] dark:bg-[#17211d] dark:text-[#f4f0e8] dark:border-[#9bb6a5] flex items-center justify-center gap-2 text-base hover:bg-[#e9e2d6] dark:hover:bg-[#315b4d] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                 >
                   Learn More
                   <ChevronDown className="h-5 w-5 group-hover:animate-bounce" />
