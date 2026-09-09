@@ -44,7 +44,7 @@ export default function Hero() {
                 className="flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-[#b94b32] font-semibold"
               >
                 <span className="h-px w-10 bg-[#b94b32]" />
-                Digital maker / Ilocos Sur
+                Digital maker
               </motion.div>
 
               {/* Main heading */}
@@ -185,8 +185,8 @@ export default function Hero() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 hidden sm:flex items-center justify-between border-t border-[#1d2924]/15 dark:border-[#f4f0e8]/20 py-4 text-[10px] uppercase tracking-[0.22em] text-[#68736b] dark:text-[#b8c1b8]">
-          <span>Based in Ilocos Sur, Philippines</span>
-          <span>Available for thoughtful digital work</span>
+          <span> Based in Ilocos Sur, Philippines</span>
+          <span> Available for thoughtful digital work</span>
         </div>
 
         {/* Scroll indicator */}
