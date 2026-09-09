@@ -145,7 +145,7 @@ export const projects: Project[] = [
     title: "Persona 3 Reload",
     description: "Persona-themed interactive site with animated social link cards, character showcase, and sound-driven UI",
     longDescription: "A stylized fan site inspired by Persona 3 Reload, featuring a flippable social link deck with card-back reveals, a focus-mode character roster with hover/select sound effects, and a cinematic hero section. Built with a strong dark UI aesthetic, layered CSS animations, and responsive layouts across desktop, tablet, and mobile.",
-    image: "/optimized/persona.png",
+    image: "/optimized/persona.webp",
     technologies: ["React", "TypeScript", "CSS", "Vite"],
     githubUrl: "https://github.com/iamsylo/persona",
     liveUrl: "https://personareload.netlify.app/",
